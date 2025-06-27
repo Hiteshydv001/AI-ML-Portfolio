@@ -1,0 +1,32 @@
+import { BlogLayout } from "@/components/BlogLayout";
+
+export const meta = {
+  date: "2025-02-21",
+  title: "Weather-Integrated Traffic Routing with Dynamic Speed Prediction",
+  description:
+    "Accepted at ICRAAI 2025, this research focuses on integrating real-time weather data into traffic routing algorithms for smart city applications and designing AI models for speed prediction.",
+  image: "/images/Publication-1.png",
+  tags: ["AI", "Smart Cities", "Traffic Optimization", "Research"],
+};
+
+export default (props) => <BlogLayout meta={meta} {...props} />;
+
+As urban areas grow, traffic congestion becomes an increasingly critical issue. Traditional routing algorithms often overlook a significant variable: the weather. Adverse weather conditions like heavy rain, fog, or snow can drastically reduce average vehicle speeds and impact traffic flow. Our research, accepted at ICRAAI 2025, presents a novel approach to traffic routing by integrating real-time weather data and dynamically predicting vehicle speeds.
+
+## Core Idea
+
+The central thesis of our work is that a smart city's traffic management system can be made significantly more efficient by being weather-aware. By predicting how different weather conditions will affect traffic speed on various road segments, we can proactively suggest alternative, faster routes to drivers.
+
+## System Architecture
+
+Our proposed system consists of two main AI-driven components:
+
+1.  **Dynamic Speed Prediction Model:** We designed an AI model that takes real-time weather data (e.g., precipitation, visibility, wind speed) and historical traffic data as input. The model's output is a predicted average speed for different road segments under the current environmental conditions.
+
+2.  **Weather-Integrated Routing Algorithm:** The speed predictions are then fed into a modified pathfinding algorithm (like A* or Dijkstra's). Instead of using static speed limits to calculate travel time for each road segment, our algorithm uses the dynamically predicted speeds.
+
+## Implementation & Results
+
+We trained our models using historical traffic datasets correlated with weather logs. The results demonstrated a marked improvement in route optimization, especially during periods of adverse weather. The system was able to suggest routes that, while potentially longer in distance, were significantly faster in terms of travel time compared to traditional navigation systems.
+
+By designing AI models for speed prediction and path optimization under varying environmental conditions, we are taking a step towards building smarter, more resilient, and more efficient cities for the future.

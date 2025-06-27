@@ -1,0 +1,34 @@
+import { BlogLayout } from "@/components/BlogLayout";
+import { CodeWindow } from "@/components/CodeWindow";
+
+export const meta = {
+  date: "2024-11-17",
+  title: "Train Waitlisted Ticket Confirmation Prediction Using Machine Learning",
+  description:
+    "A machine learning model to predict the confirmation probability of waitlisted train tickets, analyzing historical Indian Railways data to support better travel planning decisions.",
+  image:
+    "/images/Publication-2.png",
+  tags: ["Machine Learning", "Prediction", "Python", "Research"],
+};
+
+export default (props) => <BlogLayout meta={meta} {...props} />;
+
+Predicting the confirmation probability of a waitlisted train ticket is a significant challenge in regions with high railway traffic, such as India. This project, published in ICACCTech 2024, addresses this issue by developing a robust machine learning model. The primary goal is to provide travelers with an accurate estimate of their chances of getting a confirmed seat, thereby enabling better travel planning and reducing uncertainty.
+
+## Problem Statement
+
+The Indian Railways system handles millions of passengers daily, and waitlisted tickets are a common occurrence. Travelers often face ambiguity about whether their ticket will be confirmed, leading to last-minute travel disruptions. An accurate prediction model can significantly alleviate this problem by offering a data-driven probability of confirmation.
+
+## Methodology
+
+We approached this problem by leveraging a comprehensive dataset of historical Indian Railways data. The process involved several key stages:
+
+1.  **Data Collection & Preprocessing:** We gathered extensive historical data, including ticket booking details, train schedules, routes, and final chart statuses. This raw data was cleaned, and missing values were handled. Feature engineering was performed to extract relevant attributes like booking-to-travel time gap, day of the week, seasonality, and waitlist number.
+
+2.  **Model Development:** Several machine learning algorithms were evaluated for this classification task, including Logistic Regression, Random Forest, Gradient Boosting, and a simple Neural Network.
+
+3.  **Evaluation:** The models were trained and tested on separate data splits. The final model was chosen based on its accuracy, precision, and recall in predicting the 'Confirmed' status. Our final model achieved a high degree of accuracy, demonstrating its potential for real-world application.
+
+## Conclusion
+
+The developed machine learning model provides a reliable tool for predicting the confirmation probability of waitlisted train tickets. By analyzing historical data, it offers valuable insights that can help passengers make more informed decisions. This work not only showcases a practical application of machine learning but also contributes to improving the travel experience for millions of railway passengers.

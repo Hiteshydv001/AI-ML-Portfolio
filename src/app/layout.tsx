@@ -11,9 +11,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "John Doe - Developer",
+  title: "Hitesh Kumar - AI/ML Engineer",
   description:
-    "John Doe is a developer, writer and speaker. He is a digital nomad and travels around the world while working remotely.",
+    "A high-fidelity visualization of my end-to-end AI/ML pipeline. Witness the journey from raw data to deployed intelligence.",
 };
 
 export default function RootLayout({
@@ -23,15 +23,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      {/* Set the correct light gradient background */}
       <body
         className={twMerge(
           inter.className,
-          "flex antialiased h-screen overflow-hidden bg-gray-100"
+          "flex antialiased h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50"
         )}
       >
         <Sidebar />
-        <div className="lg:pl-2 lg:pt-2 bg-gray-100 flex-1 overflow-y-auto">
-          <div className="flex-1 bg-white min-h-screen lg:rounded-tl-xl border border-transparent lg:border-neutral-200 overflow-y-auto">
+        <div className="lg:pl-2 lg:pt-2 flex-1 overflow-y-auto bg-transparent">
+          {/* Main content area with a semi-transparent white background and blur */}
+          <div className="flex-1 bg-white/70 backdrop-blur-xl min-h-screen lg:rounded-tl-xl border border-transparent lg:border-gray-200/60 overflow-y-auto">
             {children}
             <Footer />
           </div>

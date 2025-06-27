@@ -43,22 +43,23 @@ export function BlogLayout({
             <ArrowLeftIcon className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 d" />
           </Link>
 
-          <Heading className=" py-4">{meta.title}</Heading>
+          <Heading className="py-4">{meta.title}</Heading>
           <time
             dateTime={meta.date}
-            className="flex items-center text-base text-zinc-400 "
+            className="flex items-center text-base text-zinc-400"
           >
-            <Paragraph className=" text-zinc-700">
+            <Paragraph className="text-zinc-700">
               {formatDate(meta.date)}
             </Paragraph>
           </time>
-          <div className="w-full mt-4 aspect-w-16 aspect-h-10 bg-gray-100 rounded-lg overflow-hidden xl:aspect-w-16 xl:aspect-h-10 relative">
+          <div className="relative w-full h-[600px] mt-4 rounded-lg overflow-hidden bg-gray-100">
             <Image
               src={meta.image}
               alt="thumbnail"
-              height="800"
-              width="800"
-              className={`object-cover object-left-top w-full max-h-96`}
+              fill
+              priority
+              className="object-contain"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
             />
           </div>
         </header>

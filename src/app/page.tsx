@@ -1,34 +1,30 @@
 import { Container } from "@/components/Container";
-import { Heading } from "@/components/Heading";
-import { Highlight } from "@/components/Highlight";
-import { Paragraph } from "@/components/Paragraph";
 import { Products } from "@/components/Products";
+import { HeroPipeline } from "@/components/HeroPipeline";
+import { Heading } from "@/components/Heading";
+import { Paragraph } from "@/components/Paragraph";
 import { TechStack } from "@/components/TechStack";
-import Image from "next/image";
 
 export default function Home() {
   return (
     <Container>
-      <span className="text-4xl">👋</span>
-      <Heading className="font-black">Hello there! I&apos;m John</Heading>
-      <Paragraph className="max-w-xl mt-4">
-        I&apos;m a full-stack developer that loves{" "}
-        <Highlight>building products</Highlight> and web apps that can impact
-        millions of lives
-      </Paragraph>
-      <Paragraph className="max-w-xl mt-4">
-        I&apos;m a senior software engineer with{" "}
-        <Highlight>7 years of experience</Highlight> building scalable web apps
-        that are performance optimized and good looking.
-      </Paragraph>
-      <Heading
-        as="h2"
-        className="font-black text-lg md:text-lg lg:text-lg mt-20 mb-4"
-      >
-        What I&apos;ve been working on
-      </Heading>
-      <Products />
-      <TechStack />
+      {/* The one true hero component */}
+      <HeroPipeline />
+
+      <div className="mt-24">
+        <Heading
+          as="h2"
+          className="font-black text-lg md:text-lg lg:text-lg mb-4 flex items-center gap-2"
+        >
+          <span className="text-2xl">⚡</span>
+          Featured Project Details
+        </Heading>
+        <Paragraph className="mb-8 text-gray-600">
+          A closer look at the projects built from the pipeline visualized above.
+        </Paragraph>
+        <Products />
+        <TechStack />
+      </div>
     </Container>
   );
 }

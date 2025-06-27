@@ -1,23 +1,24 @@
 import {
+  IconBrandGithub,
   IconBrandLinkedin,
-  IconBrandTwitter,
   IconBrandYoutube,
 } from "@tabler/icons-react";
+import { IconBrandKaggle } from "./KaggleIcon";
 
 export const socials = [
   {
-    href: "https://twitter.com/mannupaaji",
-    label: "Twitter",
-    icon: IconBrandTwitter,
+    href: "https://github.com/hiteshydv001",
+    label: "GitHub",
+    icon: IconBrandGithub,
   },
   {
-    href: "https://linkedin.com/in/manuarora28",
+    href: "https://www.linkedin.com/in/hitesh-kumar-4b2735252/",
     label: "LinkedIn",
     icon: IconBrandLinkedin,
   },
   {
-    href: "https://youtube.com/maninthere",
-    label: "YouTube",
-    icon: IconBrandYoutube,
+    href: "https://www.kaggle.com/hiteshkumar001",
+    label: "Kaggle",
+    icon: IconBrandKaggle,
   },
 ];

@@ -2,15 +2,14 @@ import { Container } from "@/components/Container";
 import { Heading } from "@/components/Heading";
 import { Highlight } from "@/components/Highlight";
 import { Paragraph } from "@/components/Paragraph";
-import { Products } from "@/components/Products";
 import { getAllBlogs } from "../../../lib/getAllBlogs";
 import { Blogs } from "@/components/Blogs";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blogs | John Doe",
+  title: "Blog & Research | Hitesh Kumar",
   description:
-    "John Doe is a developer, writer and speaker. He is a digital nomad and travels around the world while working remotely.",
+    "I write about AI, Machine Learning, software development, and my research work.",
 };
 
 export default async function Blog() {
@@ -20,10 +19,12 @@ export default async function Blog() {
   return (
     <Container>
       <span className="text-4xl">📝</span>
-      <Heading className="font-black pb-4">I write about technology</Heading>
+      <Heading className="font-black pb-4">
+        Blog & Research Publications
+      </Heading>
       <Paragraph className="pb-10">
-        Ever since <Highlight> I was a kid</Highlight>, I&apos;ve been
-        fascinated by technology.
+        This is where I share my <Highlight>research and insights</Highlight> on
+        AI, machine learning, and software development.
       </Paragraph>
       <Blogs blogs={data} />
     </Container>

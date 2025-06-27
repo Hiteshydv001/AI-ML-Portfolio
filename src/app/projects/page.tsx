@@ -1,25 +1,21 @@
 import { Container } from "@/components/Container";
 import { Heading } from "@/components/Heading";
-import { Highlight } from "@/components/Highlight";
-import { Paragraph } from "@/components/Paragraph";
 import { Products } from "@/components/Products";
 import { Metadata } from "next";
-import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Projects | John Doe",
+  title: "Projects | Hitesh Kumar",
   description:
-    "John Doe is a developer, writer and speaker. He is a digital nomad and travels around the world while working remotely.",
+    "Explore a collection of AI, Machine Learning, and software development projects by Hitesh Kumar.",
 };
 
-export default function Projects() {
+export default function ProjectsPage() {
   return (
     <Container>
-      <span className="text-4xl">⚡</span>
-      <Heading className="font-black mb-10">
-        {" "}
-        What I&apos;ve been working on
-      </Heading>
+      <div className="flex items-center gap-4 mb-10">
+        <span className="text-4xl">⚡</span>
+        <Heading className="font-black">What I&apos;ve been working on</Heading>
+      </div>
 
       <Products />
     </Container>

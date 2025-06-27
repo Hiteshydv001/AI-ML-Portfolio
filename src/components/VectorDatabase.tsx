@@ -1,40 +1,33 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import { TerminalWindow } from './TerminalWindow';
+import React from 'react';
+import { motion } from 'framer-motion';
 
-export const VectorDatabase = ({ animationStep }: { animationStep: number }) => {
-    const [logs, setLogs] = useState<string[]>([]);
-    const allLogs = [
-        "init_vector_db(engine='FAISS')",
-        "index_documents('Multi-RAG')",
-        "create_retriever()",
-        "✅ RAG pipeline ready."
-    ];
-
-    useEffect(() => {
-        if (animationStep === 2) {
-            setLogs([]);
-            let i = 0;
-            const interval = setInterval(() => {
-                if (i < allLogs.length) {
-                    setLogs(prev => [...prev, allLogs[i]]);
-                    i++;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 800);
-            return () => clearInterval(interval);
-        }
-    }, [animationStep]);
-
+export const VectorDatabase = () => {
     return (
-        <div className="relative w-full h-full">
-            <svg viewBox="0 0 400 250" className="w-full drop-shadow-2xl">
-                <rect x="0" y="10" width="400" height="230" rx="15" fill="#052e16" stroke="#10b981" strokeWidth="1" strokeOpacity="0.5" />
-                <foreignObject x="25" y="30" width="350" height="195">
-                    <TerminalWindow logs={logs} title="Vector Indexing" />
+        <div className="relative w-full h-full flex flex-col items-center justify-center">
+            <motion.div className="absolute -top-8 left-0 z-20 bg-white rounded-lg p-3 shadow-lg border border-gray-200/80 text-sm font-semibold space-y-1" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 2.2 }}>
+                <p className="text-green-600 flex items-center"><span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>Agents: Multi</p>
+                <p className="text-green-600">Gain: +40%</p>
+                <p className="text-green-600 flex items-center"><span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>Status: Active</p>
+            </motion.div>
+             <svg viewBox="0 0 400 250" className="w-full max-w-sm drop-shadow-xl">
+                 <rect x="0" y="10" width="400" height="220" rx="20" fill="#f0fdf4" stroke="#dcfce7" />
+                 <g transform="translate(40, 70)">
+                    {[...Array(5)].map((_, i) => (
+                        <motion.circle key={i} cx={i*15} cy={i*10 + 20} r="5" fill="#16a34a" initial={{ scale: 0}} animate={{ scale: 1 }} transition={{ duration: 0.5, delay: 2.5 + i * 0.1 }} />
+                    ))}
+                 </g>
+                 <foreignObject x="150" y="40" width="230" height="150">
+                    <div className="font-mono text-[10px] bg-gray-800 text-green-400 p-4 rounded-lg h-full leading-relaxed">
+                        <p>&gt; build_agent('Multi-RAG-Agent')</p>
+                        <p className="text-gray-400"># Efficiency gain: +40%</p>
+                    </div>
                 </foreignObject>
-            </svg>
+             </svg>
+            <div className="text-center mt-4">
+                <h3 className="text-lg font-semibold text-green-600">Vector Store</h3>
+                <p className="text-sm text-gray-500">Multi-RAG-Agent Tools</p>
+            </div>
         </div>
     );
-};
+}; 

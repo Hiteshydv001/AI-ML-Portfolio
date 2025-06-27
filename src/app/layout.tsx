@@ -23,7 +23,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* Set the correct light gradient background */}
       <body
         className={twMerge(
           inter.className,
@@ -32,7 +31,6 @@ export default function RootLayout({
       >
         <Sidebar />
         <div className="lg:pl-2 lg:pt-2 flex-1 overflow-y-auto bg-transparent">
-          {/* Main content area with a semi-transparent white background and blur */}
           <div className="flex-1 bg-white/70 backdrop-blur-xl min-h-screen lg:rounded-tl-xl border border-transparent lg:border-gray-200/60 overflow-y-auto">
             {children}
             <Footer />

@@ -1,8 +1,13 @@
 import React from "react";
 
-export const Container = ({ children }: { children: React.ReactNode }) => {
+interface ContainerProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const Container = ({ children, className = "" }: ContainerProps) => {
   return (
-    <main className={`max-w-4xl w-full mx-auto py-20 px-4 md:px-10`}>
+    <main className={`max-w-4xl w-full mx-auto py-8 px-4 md:px-10 ${className}`}>
       {children}
     </main>
   );

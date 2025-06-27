@@ -4,14 +4,14 @@ import { Highlight } from "@/components/Highlight";
 import { Paragraph } from "@/components/Paragraph";
 import { Products } from "@/components/Products";
 import { TechStack } from "@/components/TechStack";
-import Image from "next/image";
+import { AIWorkstation } from "@/components/AIWorkstation";
 
 export default function Home() {
   return (
     <div className="min-h-screen overflow-x-hidden">
-      <div className="relative">
-        {/* Hero Section */}
-        <Container className="min-h-[30vh] flex flex-col justify-center">
+      <Container>
+        {/* --- Hero Section: Your Personal Introduction --- */}
+        <div className="flex flex-col justify-center pt-20">
           <span className="text-4xl">👋</span>
           <Heading className="font-black">
             Hello there! I&apos;m Hitesh Kumar
@@ -26,20 +26,30 @@ export default function Home() {
             where I enjoy designing multi-agent systems and deploying scalable AI
             solutions.
           </Paragraph>
-        </Container>
+        </div>
 
-        {/* Projects and Tech Stack */}
-        <Container>
+        {/* --- Live Simulation Section --- */}
+        <div className="mt-16">
+        <Paragraph className="text-center mb-4 text-lg mt-16">
+          Ready to see how I build? <Highlight>Let&apos;s dive in.</Highlight>
+        </Paragraph>
+          <AIWorkstation />
+        </div>
+
+        
+
+        {/* --- Projects and Tech Stack Section --- */}
+        <div className="mt-24">
           <Heading
             as="h2"
-            className="font-black text-lg md:text-lg lg:text-lg mt-8 mb-4"
+            className="font-black text-lg md:text-lg lg:text-lg mb-4"
           >
-            What I&apos;ve been working on
+            Pipeline Outputs: Featured Projects
           </Heading>
           <Products />
           <TechStack />
-        </Container>
-      </div>
+        </div>
+      </Container>
     </div>
   );
 }

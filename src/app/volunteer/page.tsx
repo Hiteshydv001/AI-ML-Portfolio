@@ -34,14 +34,16 @@ export default function VolunteerPage() {
                   key={membership.name}
                   className="group relative flex flex-col items-start rounded-2xl bg-gray-50/50 p-6 border border-gray-200 hover:border-gray-300 transition-colors"
                 >
-                  <div className="relative w-16 h-16 mb-4">
-                    <Image
-                      src={membership.logo}
-                      alt={membership.name}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
+                  {membership.logo && (
+                    <div className="relative w-16 h-16 mb-4">
+                      <Image
+                        src={membership.logo}
+                        alt={membership.name}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  )}
                   <h3 className="text-xl font-medium text-gray-800/90">
                     {membership.name}
                   </h3>
@@ -102,7 +104,7 @@ export default function VolunteerPage() {
                 >
                   <div className="relative w-16 h-16 mb-4">
                     <Image
-                      src={work.logo}
+                      src={work.logo || "/images/placeholder.png"}
                       alt={work.organization}
                       fill
                       className="object-contain"
@@ -164,4 +166,4 @@ export default function VolunteerPage() {
       </div>
     </Container>
   );
-} 
+}

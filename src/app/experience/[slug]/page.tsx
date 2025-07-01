@@ -18,9 +18,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const experience = experiences.find((e) => e.slug === slug);
 
   if (experience) {
+    const description = Array.isArray(experience.description)
+      ? experience.description[0]
+      : experience.description;
     return {
       title: `${experience.title} at ${experience.company} | Hitesh Kumar`,
-      description: experience.description[0],
+      description: description,
     };
   } else {
     return {
@@ -33,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default function SingleExperiencePage({
   params,
 }: {
-  params: { slug: string };
+  params: { slug:string };
 }) {
   const slug = params.slug;
   const experience = experiences.find((e) => e.slug === slug);
@@ -95,22 +98,26 @@ export default function SingleExperiencePage({
       </div>
 
       {/* Tech Stack Tags */}
-      <div className="flex flex-wrap gap-2 mb-8">
-        {experience.technologies.map((tech: string) => (
-          <span
-            key={tech}
-            className="px-2.5 py-1 bg-sky-50 text-sky-600 text-xs rounded-full font-medium"
-          >
-            {tech}
-          </span>
-        ))}
-      </div>
+      {experience.technologies && experience.technologies.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-8">
+          {experience.technologies.map((tech: string) => (
+            <span
+              key={tech}
+              className="px-2.5 py-1 bg-sky-50 text-sky-600 text-xs rounded-full font-medium"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      )}
 
       {/* Description */}
       <div className="prose prose-zinc dark:prose-invert">
-        {experience.description.map((desc, index) => (
-          <p key={index}>{desc}</p>
-        ))}
+        {Array.isArray(experience.description) ? (
+          experience.description.map((desc: string, index: number) => <p key={index}>{desc}</p>)
+        ) : (
+          <p>{experience.description}</p>
+        )}
         
         {/* Additional Content */}
         {experience.content && (
@@ -136,4 +143,4 @@ export default function SingleExperiencePage({
       </div>
     </Container>
   );
-} 
+}

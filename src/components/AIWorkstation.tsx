@@ -1,7 +1,7 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Typewriter } from "./Typewriter";
+import Typewriter from "./Typewriter";
 
 // --- Data for the animated terminal logs ---
 const pipelineStages = [
@@ -22,18 +22,7 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({ text, delay = 0 }) => {
     const [displayedText, setDisplayedText] = useState('');
     const [currentIndex, setCurrentIndex] = useState(0);
     
-    useEffect(() => {
-        if (delay > 0) {
-            const delayTimeout = setTimeout(() => {
-                startTyping();
-            }, delay);
-            return () => clearTimeout(delayTimeout);
-        } else {
-            startTyping();
-        }
-    }, [delay]);
-
-    const startTyping = () => {
+    const startTyping = useCallback(() => {
         const interval = setInterval(() => {
             setCurrentIndex(prev => {
                 if (prev >= text.length - 1) {
@@ -45,7 +34,18 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({ text, delay = 0 }) => {
         }, 35);
 
         return () => clearInterval(interval);
-    };
+    }, [text.length]);
+
+    useEffect(() => {
+        if (delay > 0) {
+            const delayTimeout = setTimeout(() => {
+                startTyping();
+            }, delay);
+            return () => clearTimeout(delayTimeout);
+        } else {
+            startTyping();
+        }
+    }, [delay, startTyping]);
 
     useEffect(() => {
         setDisplayedText(text.slice(0, currentIndex + 1));

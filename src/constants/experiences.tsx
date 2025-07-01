@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
-import { Experience } from "@/types/experience";
+import { Experience } from "../types/experience";
 
 export const experiences: Experience[] = [
   {
@@ -60,7 +61,7 @@ export const experiences: Experience[] = [
     location: "Github · Remote",
     period: "Jan 2025 - Mar 2025",
     description: [
-      "Delta Winter of Code(DWoC) is an open source initiative by Delta Force, the official coding club of NIT Trichy, which serves as a platform for any developer, newbie or expert to make open source contributions.",
+      "Delta Winter of Code (DWoC) is an open source initiative by Delta Force, NIT Trichy's official coding club, which serves as a platform for any developer, newbie or expert to make open source contributions.",
       "DWoC is structured slightly different from popular open source projects.",
       "Our selected project was Guard AI, an advanced remote proctoring system.",
     ],
@@ -456,84 +457,4 @@ export const experiences: Experience[] = [
       </div>
     ),
   },
-  {
-    company: "Think Blue Data",
-    position: "Data Annotation Specialist",
-    duration: "Sep 2024 - Oct 2024",
-    location: "Thailand · Remote",
-    description: [
-      "Helped in annotation of complete dataset of building topology, passive features and building type",
-      "Assisted in developing a model dataset for societal planning in Asian countries specifically Thailand",
-    ],
-    skills: [
-      "Label Studio",
-      "Data Annotation",
-      "Machine Learning",
-      "Artificial Intelligence",
-    ],
-    logo: "/images/thinkbluedata.png",
-    website: "https://www.thinkbluedata.com/",
-    slug: "think-blue-data",
-    content: "At Think Blue Data, I contributed to the development of comprehensive datasets for urban planning and architectural analysis. This work involved detailed annotation and classification of building features to support sustainable development initiatives in Thailand."
-  },
-  {
-    company: "African Association of Entrepreneurs",
-    position: "Awareness Lead",
-    duration: "Jun 2024 - Aug 2024",
-    location: "Africa · Remote",
-    description: [
-      "Generated reports on entrepreneurship environments in Africa over 12 weeks",
-      "Collaborated with a team of 12 writers for annual publication",
-      "Analyzed SME operations across different African countries"
-    ],
-    skills: [
-      "Leadership",
-      "Report Writing",
-      "Business Analysis",
-      "Team Collaboration"
-    ],
-    logo: "/images/AAE.jpeg",
-    slug: "aae-awareness-lead",
-    content: "As Awareness Lead at AAE, I had the opportunity to deeply analyze and document the entrepreneurial landscape across various African countries. This role involved coordinating with multiple stakeholders and ensuring comprehensive coverage of business environments."
-  },
-  {
-    company: "African Association of Entrepreneurs",
-    position: "Publication Lead",
-    duration: "Feb 2024 - May 2024",
-    location: "Africa · Remote",
-    description: [
-      "Led volunteer recruitment and article writing process",
-      "Managed publication of business environment articles",
-      "Coordinated with writers for the annual report"
-    ],
-    skills: [
-      "Publication Management",
-      "Team Leadership",
-      "Content Strategy",
-      "Stakeholder Management"
-    ],
-    logo: "/images/AAE.jpeg",
-    slug: "aae-publication-lead",
-    content: "In my role as Publication Lead, I was responsible for the entire publication lifecycle, from recruiting volunteer writers to ensuring the quality and timely delivery of articles. This position allowed me to develop both leadership and editorial skills while contributing to AAE&apos;s mission."
-  },
-  {
-    company: "African Association of Entrepreneurs",
-    position: "Awareness Volunteer",
-    duration: "Jul 2024 - Aug 2024",
-    location: "Africa · Remote",
-    description: [
-      "Supported awareness initiatives for African entrepreneurship",
-      "Contributed to promotional activities",
-      "Assisted in community engagement"
-    ],
-    skills: [
-      "Community Engagement",
-      "Social Media",
-      "Content Creation",
-      "Event Promotion"
-    ],
-    logo: "/images/AAE.jpeg",
-    slug: "aae-awareness-volunteer",
-    content: "As an Awareness Volunteer, I worked on various initiatives to promote entrepreneurship across Africa. This role involved creating engaging content and participating in community outreach programs to increase AAE&apos;s impact."
-  }
-]; 
+];

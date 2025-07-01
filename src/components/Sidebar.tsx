@@ -19,18 +19,18 @@ export const Sidebar = () => {
     <>
       <AnimatePresence>
         {open && (
-          <motion.div
+          <motion.aside
             initial={{ x: -200 }}
             animate={{ x: 0 }}
             transition={{ duration: 0.2, ease: "linear" }}
             exit={{ x: -200 }}
-            className="px-6  z-[100] py-10 bg-neutral-100 max-w-[14rem] lg:w-fit  fixed lg:relative  h-screen left-0 flex flex-col justify-between"
+            className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform"
           >
-            <div className="flex-1 overflow-auto">
+            <div className="h-full px-6 py-10 overflow-y-auto bg-neutral-100">
               <SidebarHeader />
               <Navigation setOpen={setOpen} />
             </div>
-          </motion.div>
+          </motion.aside>
         )}
       </AnimatePresence>
       <button
@@ -40,6 +40,26 @@ export const Sidebar = () => {
         <IconLayoutSidebarRightCollapse className="h-4 w-4 text-secondary" />
       </button>
     </>
+  );
+};
+
+const SidebarHeader = () => {
+  return (
+    <Link href="/" className="flex items-center space-x-3">
+      <Image
+        src="/images/profile-pic.png"
+        width={40}
+        height={40}
+        alt="profile"
+        className="rounded-full"
+      />
+      <div>
+        <Heading as="p" className="text-sm md:text-sm lg:text-sm">
+          Hitesh Kumar
+        </Heading>
+        <p className="text-xs text-secondary">AI/ML Engineer</p>
+      </div>
+    </Link>
   );
 };
 
@@ -53,7 +73,7 @@ export const Navigation = ({
   const isActive = (href: string) => pathname === href;
 
   return (
-    <div className="flex flex-col space-y-1 my-10 relative z-[100]">
+    <div className="flex flex-col space-y-1 my-10">
       {navLinks.map((link: NavLink) => (
         <Link
           key={link.href}
@@ -96,24 +116,6 @@ export const Navigation = ({
           <span>{link.title}</span>
         </Link>
       ))}
-    </div>
-  );
-};
-
-const SidebarHeader = () => {
-  return (
-    <div className="flex space-x-2">
-      <Image
-        src="/images/profile-pic.png"
-        alt="Avatar"
-        height="40"
-        width="40"
-        className="object-cover object-top rounded-full flex-shrink-0"
-      />
-      <div className="flex text-sm flex-col">
-        <p className="font-bold text-primary">Hitesh Kumar</p>
-        <p className="font-light text-secondary">AI/ML Engineer</p>
-      </div>
     </div>
   );
 };

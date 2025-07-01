@@ -9,9 +9,9 @@ interface ContainerProps {
 
 export const Container = ({ children, className = "" }: ContainerProps) => {
   return (
-    <main className={`max-w-4xl w-full mx-auto py-8 px-4 md:px-10 ${className}`}>
+    <div className={`max-w-5xl w-full mx-auto py-8 px-4 md:px-6 lg:px-8 ${className}`}>
       {children}
-    </main>
+    </div>
   );
 };
 

@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Typewriter } from "./Typewriter";
 
 // --- Data for the animated terminal logs ---
 const pipelineStages = [
@@ -119,6 +120,7 @@ const NeuralNetwork: React.FC = () => {
 export const AIWorkstation = () => {
     const [currentStageIndex, setCurrentStageIndex] = useState(0);
     const [showCursor, setShowCursor] = useState(true);
+    const [isTyping, setIsTyping] = useState(false);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -135,6 +137,18 @@ export const AIWorkstation = () => {
     }, []);
 
     const currentStage = pipelineStages[currentStageIndex];
+
+    const startTyping = () => {
+        setIsTyping(true);
+    };
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            startTyping();
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <div className="relative w-full h-full flex items-center justify-center p-4">

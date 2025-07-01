@@ -83,11 +83,17 @@ export const Navigation = ({
             "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-sm",
             isActive(link.href) && "bg-white shadow-lg text-primary"
           )}
+          {...(link.download ? { 
+            download: true,
+            target: "_blank",
+            rel: "noopener noreferrer"
+          } : {})}
         >
           <link.icon
             className={twMerge(
               "h-4 w-4 flex-shrink-0",
-              isActive(link.href) && "text-sky-500"
+              isActive(link.href) && "text-sky-500",
+              link.download && "text-emerald-500"
             )}
           />
           <span>{link.title}</span>

@@ -110,7 +110,7 @@ export const experiences: Experience[] = [
       "LinkedIn-Automation: Revolutionizing professional networking with post scraping, sentiment analysis, and AI-driven comment generation.",
     ],
     technologies: ["Selenium", "Artificial Intelligence", "Machine Learning", "Python"],
-    image: "/images/jwoc.jpeg",
+    image: "/images/Jwoc.jpeg",
     companyUrl: "https://www.jwoc.in/",
     certificateUrl: "https://drive.google.com/file/d/1PDz0Y5my24paC_IG7prgku_k9_r62gew/view?usp=sharing",
     slug: "jgec-winter-of-code",

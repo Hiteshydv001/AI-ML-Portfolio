@@ -1,24 +1,36 @@
+import { NavLink } from "@/types/navlink";
 import {
   IconBrandGithub,
   IconBrandLinkedin,
-  IconBrandYoutube,
+  IconBrandTwitter,
+  IconMail,
 } from "@tabler/icons-react";
 import { IconBrandKaggle } from "./KaggleIcon";
 
-export const socials = [
+export const socials: NavLink[] = [
   {
-    href: "https://github.com/hiteshydv001",
-    label: "GitHub",
+    title: "Email",
+    href: "mailto:hiteshofficial0001@gmail.com",
+    icon: IconMail,
+  },
+  {
+    title: "GitHub",
+    href: "https://github.com/Hiteshydv001",
     icon: IconBrandGithub,
   },
   {
-    href: "https://www.linkedin.com/in/hitesh-kumar-4b2735252/",
-    label: "LinkedIn",
+    title: "LinkedIn",
+    href: "https://www.linkedin.com/in/hitesh-kumar-yadav-8434b4225/",
     icon: IconBrandLinkedin,
   },
   {
+    title: "Twitter",
+    href: "https://twitter.com/hiteshyadav001",
+    icon: IconBrandTwitter,
+  },
+  {
+    title: "Kaggle",
     href: "https://www.kaggle.com/hiteshkumar001",
-    label: "Kaggle",
     icon: IconBrandKaggle,
   },
 ];

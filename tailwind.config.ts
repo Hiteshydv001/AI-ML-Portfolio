@@ -21,6 +21,28 @@ const config: Config = {
         primary: "var(--neutral-700)",
         secondary: "var(--neutral-500)",
       },
+      keyframes: {
+        matrixRain: {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(1000%)" },
+        },
+        matrixChar: {
+          "0%": { opacity: "0" },
+          "10%": { opacity: "1" },
+          "30%": { opacity: "1" },
+          "40%": { opacity: "0" },
+          "100%": { opacity: "0" },
+        },
+        blink: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
+        },
+      },
+      animation: {
+        matrixRain: "matrixRain 10s linear infinite",
+        matrixChar: "matrixChar 2s linear infinite",
+        blink: "blink 1s step-end infinite",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography"), addVariablesForColors],

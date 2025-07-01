@@ -3,8 +3,42 @@ const multiRagAgent = "/images/MultiRAG.png";
 const linkedinAutomate = "/images/LinkedinAutomate.png";
 const guardAI = "/images/GuardAI.png";
 const wasteClassification = "/images/WasteClassification.png";
+const hiteshBot = "/images/Hiteshbot.png";
 
 export const products = [
+  {
+    href: "https://github.com/Hiteshydv001/Portfolio",
+    livePreviewUrl: "https://hitesh-bot-portfolio.vercel.app/",
+    title: "AI-Powered Portfolio with HiteshBot",
+    description:
+      "Built an interactive portfolio featuring HiteshBot, a custom AI assistant trained on my professional background. Uses RAG and LLMs to provide context-aware responses in real-time.",
+    thumbnail: hiteshBot,
+    images: [hiteshBot],
+    stack: ["Python", "FastAPI", "LlamaIndex", "Gemini Pro", "Next.js", "TypeScript"],
+    slug: "ai-powered-portfolio",
+    content: (
+      <div>
+        <p>
+          This portfolio showcases a modern application of Large Language Models (LLMs) and 
+          Retrieval-Augmented Generation (RAG). HiteshBot is a specialized AI assistant that can 
+          answer complex questions about my professional background, projects, and experience 
+          with high accuracy.
+        </p>
+        <p>
+          The backend is built with FastAPI and LlamaIndex, using Google&apos;s Gemini Pro for both 
+          conversational responses and vector embeddings. The system features real-time streaming, 
+          intent recognition, and strictly grounded responses to ensure professional and accurate 
+          interactions.
+        </p>
+        <p>
+          Key features include conversational AI, RAG-based knowledge retrieval, advanced prompt 
+          engineering, and a custom data pipeline for ingesting structured resume information. 
+          The frontend is built with Next.js and TypeScript, providing a modern and responsive 
+          user interface.
+        </p>
+      </div>
+    ),
+  },
   {
     href: "https://github.com/Hiteshydv001/Multi-RAG-Agent",
     livePreviewUrl: "https://multi-rag-agent.vercel.app",

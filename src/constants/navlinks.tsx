@@ -4,32 +4,41 @@ import {
   IconBriefcase2,
   IconMail,
   IconMessage2,
+  IconCertificate,
+  IconHome2,
+  IconUser,
 } from "@tabler/icons-react";
+import { NavLink } from "@/types/navlink";
 
-export const navlinks = [
+export const navLinks: NavLink[] = [
   {
+    title: "Home",
     href: "/",
-    label: "Home",
-    icon: IconBolt,
+    icon: IconHome2
   },
   {
+    title: "About",
     href: "/about",
-    label: "About",
-    icon: IconMessage2,
+    icon: IconUser
   },
   {
+    title: "Projects",
     href: "/projects",
-    label: "Projects",
-    icon: IconBriefcase2,
+    icon: IconBolt
   },
   {
+    title: "Experience",
+    href: "/experience",
+    icon: IconBriefcase2
+  },
+  {
+    title: "Volunteer",
+    href: "/volunteer",
+    icon: IconCertificate
+  },
+  {
+    title: "Research",
     href: "/blog",
-    label: "Articles",
-    icon: IconArticle,
-  },
-  {
-    href: "/contact",
-    label: "Contact",
-    icon: IconMail,
+    icon: IconArticle
   },
 ];

@@ -7,9 +7,9 @@ import { Blogs } from "@/components/Blogs";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog & Research | Hitesh Kumar",
+  title: "Research & Patents | Hitesh Kumar",
   description:
-    "I write about AI, Machine Learning, software development, and my research work.",
+    "My research publications, patents, and technical contributions in AI and Machine Learning.",
 };
 
 export default async function Blog() {
@@ -18,13 +18,14 @@ export default async function Blog() {
 
   return (
     <Container>
-      <span className="text-4xl">📝</span>
+      <span className="text-4xl">🔬</span>
       <Heading className="font-black pb-4">
-        Blog & Research Publications
+        Research Papers & Patents
       </Heading>
       <Paragraph className="pb-10">
-        This is where I share my <Highlight>research and insights</Highlight> on
-        AI, machine learning, and software development.
+        Showcasing my <Highlight>research publications</Highlight> and{" "}
+        <Highlight>patent contributions</Highlight> in artificial intelligence,
+        machine learning, and advanced technology.
       </Paragraph>
       <Blogs blogs={data} />
     </Container>

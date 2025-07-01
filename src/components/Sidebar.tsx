@@ -1,6 +1,6 @@
 "use client";
-import { navlinks } from "@/constants/navlinks";
-import { Navlink } from "@/types/navlink";
+import { navLinks } from "@/constants/navlinks";
+import { NavLink } from "@/types/navlink";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -8,7 +8,6 @@ import React, { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { Heading } from "./Heading";
 import { socials } from "@/constants/socials";
-import { Badge } from "./Badge";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconLayoutSidebarRightCollapse } from "@tabler/icons-react";
 import { isMobile } from "@/lib/utils";
@@ -30,9 +29,6 @@ export const Sidebar = () => {
             <div className="flex-1 overflow-auto">
               <SidebarHeader />
               <Navigation setOpen={setOpen} />
-            </div>
-            <div onClick={() => isMobile() && setOpen(false)}>
-              <Badge href="/resume" text="View Resume" />
             </div>
           </motion.div>
         )}
@@ -58,7 +54,7 @@ export const Navigation = ({
 
   return (
     <div className="flex flex-col space-y-1 my-10 relative z-[100]">
-      {navlinks.map((link: Navlink) => (
+      {navLinks.map((link: NavLink) => (
         <Link
           key={link.href}
           href={link.href}
@@ -74,14 +70,14 @@ export const Navigation = ({
               isActive(link.href) && "text-sky-500"
             )}
           />
-          <span>{link.label}</span>
+          <span>{link.title}</span>
         </Link>
       ))}
 
       <Heading as="p" className="text-sm md:text-sm lg:text-sm pt-10 px-2">
         Socials
       </Heading>
-      {socials.map((link: Navlink) => (
+      {socials.map((link: NavLink) => (
         <Link
           key={link.href}
           href={link.href}
@@ -97,7 +93,7 @@ export const Navigation = ({
               isActive(link.href) && "text-sky-500"
             )}
           />
-          <span>{link.label}</span>
+          <span>{link.title}</span>
         </Link>
       ))}
     </div>

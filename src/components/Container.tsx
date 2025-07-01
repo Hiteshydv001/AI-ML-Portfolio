@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 interface ContainerProps {
@@ -12,3 +14,5 @@ export const Container = ({ children, className = "" }: ContainerProps) => {
     </main>
   );
 };
+
+export default Container;

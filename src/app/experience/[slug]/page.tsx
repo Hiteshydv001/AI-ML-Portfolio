@@ -63,8 +63,8 @@ export default function SingleExperiencePage({
       {/* Header with Title and Company Button */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
-          <Heading className="font-black mb-0 pb-0">{experience.title}</Heading>
-          <p className="text-zinc-600 dark:text-zinc-400">
+          <Heading className="font-black mb-0 pb-0 text-gray-900">{experience.title}</Heading>
+          <p className="text-gray-800">
             {experience.company} • {experience.period}
           </p>
         </div>
@@ -103,7 +103,7 @@ export default function SingleExperiencePage({
           {experience.technologies.map((tech: string) => (
             <span
               key={tech}
-              className="px-2.5 py-1 bg-sky-50 text-sky-600 text-xs rounded-full font-medium"
+              className="px-2.5 py-1 bg-sky-50 text-gray-800 text-xs rounded-full font-medium"
             >
               {tech}
             </span>
@@ -112,28 +112,28 @@ export default function SingleExperiencePage({
       )}
 
       {/* Description */}
-      <div className="prose prose-zinc dark:prose-invert">
+      <div className="prose prose-zinc text-gray-800">
         {Array.isArray(experience.description) ? (
-          experience.description.map((desc: string, index: number) => <p key={index}>{desc}</p>)
+          experience.description.map((desc: string, index: number) => <p key={index} className="text-gray-800">{desc}</p>)
         ) : (
-          <p>{experience.description}</p>
+          <p className="text-gray-800">{experience.description}</p>
         )}
         
         {/* Additional Content */}
         {experience.content && (
-          <Prose>{experience.content}</Prose>
+          <Prose className="text-gray-800">{experience.content}</Prose>
         )}
 
         {/* Certificate Section */}
         {experience.certificateUrl && (
           <div className="mt-8">
-            <h3>Certificate</h3>
+            <h3 className="text-gray-900">Certificate</h3>
             <p>
               <a
                 href={experience.certificateUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300"
+                className="text-sky-700 hover:text-sky-800"
               >
                 View Certificate →
               </a>

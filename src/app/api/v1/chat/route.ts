@@ -12,42 +12,87 @@ export async function OPTIONS() {
     });
 }
 
-export async function POST(request: NextRequest) {
-    try {
-        if (!request.body) {
-            return NextResponse.json(
-                { message: 'Request body is required' },
-                { status: 400 }
-            );
-        }
+export const runtime = 'edge';
 
-        const body = await request.json();
-        
+export async function POST(req: Request) {
+    try {
+        const { message, chat_history } = await req.json();
+        console.log('Received request:', { message, chat_history });
+
         const response = await fetch(BACKEND_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Accept': 'text/event-stream',
             },
-            body: JSON.stringify(body),
+            body: JSON.stringify({
+                message,
+                chat_history: chat_history || []
+            }),
         });
 
         if (!response.ok) {
-            const error = await response.json().catch(() => ({ message: 'Backend server error' }));
-            return NextResponse.json(error, { status: response.status });
+            console.error('Backend API error:', response.status, await response.text());
+            throw new Error(`Backend API error: ${response.status}`);
         }
 
-        const data = await response.json();
-        return NextResponse.json(data, {
+        // Create a new ReadableStream to handle the streaming response
+        const stream = new ReadableStream({
+            async start(controller) {
+                const reader = response.body?.getReader();
+                if (!reader) {
+                    controller.close();
+                    return;
+                }
+
+                const textDecoder = new TextDecoder();
+                let buffer = '';
+
+                try {
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        
+                        if (done) {
+                            // Process any remaining data in the buffer
+                            if (buffer.trim()) {
+                                controller.enqueue(new TextEncoder().encode(`data: ${buffer}\n\n`));
+                            }
+                            controller.close();
+                            break;
+                        }
+
+                        // Decode the chunk and add to buffer
+                        buffer += textDecoder.decode(value, { stream: true });
+
+                        // Process complete lines from the buffer
+                        const lines = buffer.split('\n');
+                        buffer = lines.pop() || ''; // Keep the last incomplete line
+
+                        // Forward complete lines
+                        for (const line of lines) {
+                            if (line.trim()) {
+                                controller.enqueue(new TextEncoder().encode(`${line}\n\n`));
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error('Stream processing error:', error);
+                    controller.error(error);
+                }
+            }
+        });
+
+        return new Response(stream, {
             headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type',
+                'Content-Type': 'text/event-stream',
+                'Cache-Control': 'no-cache',
+                'Connection': 'keep-alive',
             },
         });
     } catch (error) {
-        console.error('API route error:', error);
+        console.error('Error in chat API:', error);
         return NextResponse.json(
-            { message: 'Internal server error' },
+            { error: 'Internal Server Error' },
             { status: 500 }
         );
     }

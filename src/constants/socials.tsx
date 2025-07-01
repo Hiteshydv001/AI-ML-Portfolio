@@ -20,12 +20,12 @@ export const socials: NavLink[] = [
   },
   {
     title: "LinkedIn",
-    href: "https://www.linkedin.com/in/hitesh-kumar-yadav-8434b4225/",
+    href: "https://www.linkedin.com/in/hitesh-kumar-aiml/",
     icon: IconBrandLinkedin,
   },
   {
-    title: "Twitter",
-    href: "https://twitter.com/hiteshyadav001",
+    title: "X (Twitter)",
+    href: "https://x.com/Hitesh_0003",
     icon: IconBrandTwitter,
   },
   {

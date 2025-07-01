@@ -6,7 +6,7 @@ import { products } from "@/constants/products";
 import Link from "next/link";
 import { Paragraph } from "./Paragraph";
 import { motion } from "framer-motion";
-import { MacbookSVG } from "./MacbookSVG"; // Import the new SVG component
+import { MacbookSVG } from "./MacbookSVG";
 
 export const Products = () => {
   return (
@@ -26,17 +26,19 @@ export const Products = () => {
             transition={{ duration: 0.3, delay: idx * 0.1 }}
             className="group hover:bg-gray-50/80 rounded-2xl transition duration-200 p-4"
           >
-            <div className="flex flex-col md:flex-row items-start md:space-x-6">
+            <div className="flex flex-col md:flex-row items-center gap-6">
               {/* Image Frame */}
               <Link
                 href={product.slug ? `/projects/${product.slug}` : product.href}
-                className="w-full md:w-2/5 flex-shrink-0 mb-4 md:mb-0"
+                className="w-full md:w-2/5 flex-shrink-0"
               >
-                <MacbookSVG src={product.thumbnail} className="drop-shadow-lg" />
+                <div className="flex items-center justify-center">
+                  <MacbookSVG src={product.thumbnail} className="drop-shadow-lg w-full max-w-lg" />
+                </div>
               </Link>
 
               {/* Text Content */}
-              <div className="flex-1">
+              <div className="flex-1 w-full">
                 <Link href={product.slug ? `/projects/${product.slug}` : product.href}>
                   <Heading
                     as="h3"

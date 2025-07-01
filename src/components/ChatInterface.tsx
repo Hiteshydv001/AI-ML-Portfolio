@@ -1,103 +1,148 @@
 "use client";
+
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Message {
     role: 'user' | 'assistant';
     content: string;
-    isStreaming?: boolean;
 }
 
 export const ChatInterface = () => {
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [isFirstMount, setIsFirstMount] = useState(true);
+    const [currentResponse, setCurrentResponse] = useState('');
     const messagesEndRef = useRef<HTMLDivElement>(null);
-    const [streamedText, setStreamedText] = useState('');
 
     const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        if (messagesEndRef.current) {
+            const scrollContainer = messagesEndRef.current.parentElement;
+            if (scrollContainer) {
+                scrollContainer.scrollTop = scrollContainer.scrollHeight;
+            }
+        }
     };
 
     useEffect(() => {
-        if (isFirstMount) {
-            setIsFirstMount(false);
-            if (messages.length > 0) {
-                scrollToBottom();
-            }
-            return;
-        }
-        
-        if (messages.length > 0) {
-            scrollToBottom();
-        }
-    }, [messages, isFirstMount]);
+        const timeoutId = setTimeout(scrollToBottom, 100);
+        return () => clearTimeout(timeoutId);
+    }, [messages, currentResponse]);
 
-    const simulateStreamingResponse = async (response: string) => {
-        setMessages(prev => [...prev, { role: 'assistant', content: '', isStreaming: true }]);
-        
-        let currentText = '';
-        const words = response.split(' ');
-        
-        for (let i = 0; i < words.length; i++) {
-            const word = words[i];
-            const delay = Math.random() * 50 + 30; // Random delay between 30-80ms
-            
-            await new Promise(resolve => setTimeout(resolve, delay));
-            
-            currentText += (i === 0 ? '' : ' ') + word;
-            setMessages(prev => {
-                const newMessages = [...prev];
-                newMessages[newMessages.length - 1] = {
-                    role: 'assistant',
-                    content: currentText,
-                    isStreaming: i < words.length - 1
-                };
-                return newMessages;
-            });
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInput(e.target.value);
+    };
+
+    const processStreamResponse = async (response: Response) => {
+        const reader = response.body?.getReader();
+        if (!reader) throw new Error("No response body");
+
+        const decoder = new TextDecoder();
+        let buffer = '';
+        let fullResponse = '';
+
+        try {
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                // Decode the chunk and add it to our buffer
+                buffer += decoder.decode(value, { stream: true });
+
+                // Process complete messages from the buffer
+                const lines = buffer.split('\n');
+                buffer = lines.pop() || ''; // Keep the last incomplete line in the buffer
+
+                for (const line of lines) {
+                    if (line.trim() === '') continue;
+                    if (!line.startsWith('data: ')) continue;
+
+                    try {
+                        const data = JSON.parse(line.substring(6));
+                        console.log('Received data:', data);
+
+                        if (data.type === 'text') {
+                            fullResponse += data.data;
+                            setCurrentResponse(fullResponse);
+                        } else if (data.type === 'end') {
+                            console.log('End of stream, final response:', fullResponse);
+                            if (fullResponse) {
+                                setMessages(prev => [...prev, {
+                                    role: 'assistant',
+                                    content: fullResponse
+                                }]);
+                                setCurrentResponse('');
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Error parsing line:', line, error);
+                    }
+                }
+            }
+
+            // Process any remaining data in the buffer
+            if (buffer) {
+                console.log('Processing remaining buffer:', buffer);
+                if (buffer.startsWith('data: ')) {
+                    try {
+                        const data = JSON.parse(buffer.substring(6));
+                        if (data.type === 'text') {
+                            fullResponse += data.data;
+                            setCurrentResponse(fullResponse);
+                        }
+                    } catch (error) {
+                        console.error('Error parsing final buffer:', error);
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error reading stream:', error);
+            throw error;
         }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!input.trim()) return;
+        if (!input.trim() || isLoading) return;
 
         const userMessage = input.trim();
         setInput('');
-        setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
         setIsLoading(true);
+        setCurrentResponse('');
+        
+        // Add user message immediately
+        setMessages(prev => [...prev, { role: 'user', content: userMessage }]);
 
         try {
-            if (!userMessage.trim()) {
-                throw new Error('Please enter a message');
-            }
-
+            console.log('Sending request with message:', userMessage);
             const response = await fetch('/api/v1/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ message: userMessage }),
+                body: JSON.stringify({
+                    message: userMessage,
+                    chat_history: messages.map(msg => ({
+                        role: msg.role,
+                        content: msg.content
+                    }))
+                }),
             });
 
-            const data = await response.json();
-
             if (!response.ok) {
-                throw new Error(data.message || `Server error: ${response.status}`);
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            if (!data.response) {
-                throw new Error('Invalid response from server');
-            }
-
-            await simulateStreamingResponse(data.response);
+            await processStreamResponse(response);
         } catch (error) {
-            console.error('Error:', error);
-            const errorMessage = error instanceof Error ? error.message : 'An unexpected error occurred';
-            await simulateStreamingResponse(`I apologize, but there was an error: ${errorMessage}. Please try again later.`);
+            console.error('Error in chat:', error);
+            setMessages(prev => [...prev, {
+                role: 'assistant',
+                content: "I apologize, but I encountered an error. Please try again."
+            }]);
         } finally {
             setIsLoading(false);
+            setCurrentResponse('');
         }
     };
 
@@ -199,7 +244,7 @@ export const ChatInterface = () => {
                         {/* Messages Area */}
                         <div className="flex-grow overflow-y-auto p-6 space-y-4 text-base">
                             <AnimatePresence mode="popLayout">
-                                {messages.map((message, index) => (
+                                {messages.map((message: Message, index: number) => (
                                     <motion.div
                                         key={index}
                                         initial={{ opacity: 0, y: 20 }}
@@ -216,39 +261,40 @@ export const ChatInterface = () => {
                                         `}>
                                             <p className="whitespace-pre-wrap">
                                                 {message.content}
-                                                {message.isStreaming && (
-                                                    <span className="inline-block w-2 h-4 ml-1 bg-green-400 animate-pulse">▊</span>
-                                                )}
                                             </p>
                                         </div>
                                     </motion.div>
                                 ))}
-                                {isLoading && !messages[messages.length - 1]?.isStreaming && (
+                                {(isLoading || currentResponse) && (
                                     <motion.div
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         className="flex justify-start"
                                     >
-                                        <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
-                                            <div className="flex space-x-2">
-                                                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                                                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
-                                                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" style={{ animationDelay: '300ms' }} />
-                                            </div>
+                                        <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-3 text-sm">
+                                            {currentResponse ? (
+                                                <p className="whitespace-pre-wrap">{currentResponse}</p>
+                                            ) : (
+                                                <div className="flex space-x-2">
+                                                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                                                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
+                                                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" style={{ animationDelay: '300ms' }} />
+                                                </div>
+                                            )}
                                         </div>
                                     </motion.div>
                                 )}
                             </AnimatePresence>
                             <div ref={messagesEndRef} />
                         </div>
-
+                        
                         {/* Input Area */}
                         <div className="p-6 border-t border-slate-700/50">
                             <form onSubmit={handleSubmit} className="relative">
                                 <input
                                     type="text"
                                     value={input}
-                                    onChange={(e) => setInput(e.target.value)}
+                                    onChange={handleInputChange}
                                     placeholder="Type your message..."
                                     className="w-full bg-slate-800/50 text-green-400 rounded-lg pl-6 pr-14 py-4 text-base border border-slate-700 focus:outline-none focus:border-green-500/50 placeholder-green-600/30"
                                     disabled={isLoading}
@@ -277,4 +323,4 @@ export const ChatInterface = () => {
             </svg>
         </div>
     );
-}; 
+};

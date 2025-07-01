@@ -1,17 +1,17 @@
 "use client";
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Typewriter from "./Typewriter";
 
-// --- Data for the animated terminal logs ---
+// --- ACCURATE DATA for the animated terminal logs, tailored to your profile ---
 const pipelineStages = [
-    { title: "DATA INGESTION", logs: ["> Initializing neural pathways...", "✅ Memory clusters allocated: 1.21 PB", "✅ Neural bridges established: 10M+"] },
-    { title: "DATA PROCESSING", logs: ["> Training synthetic neurons...", "> Optimizing synaptic weights...", "✅ Neural plasticity: 98.7%"] },
-    { title: "TOKENIZATION", logs: ["> Neural tokenizer online...", "> Processing semantic patterns...", "✅ Compression ratio: 42x"] },
-    { title: "MODEL TRAINING", logs: ["> Training deep networks...", "📈 Neural efficiency: 99.9%", "✅ Model convergence: 0.89"] },
-    { title: "RAG & VECTOR DB", logs: ["> Embedding in vector space...", "> Knowledge graph: stable", "✅ Semantic anchor: δ < 0.001"] },
-    { title: "DEPLOYMENT", logs: ["> Activating neural cores...", "> AI mesh: operational", "✅ System Status: ONLINE"] },
+    { title: "EXPERIENCE", logs: ["> Loading professional journey...", "✅ AI/ML Intern @ Edunet (AICTE & SHELL)", "✅ Web Developer @ African Association of Entrepreneurs", "✅ AI Research Volunteer @ Think Blue Data"] },
+    { title: "SKILLS", logs: ["> Analyzing tech stack...", "🤖 AI/ML: TensorFlow, PyTorch, Hugging Face", "💻 Backend & Cloud: Python, FastAPI, AWS, Docker", "🌐 Frontend: Next.js, Streamlit, React"] },
+    { title: "PROJECTS", logs: ["> Compiling project portfolio...", "🚀 Multi-RAG-Agent Tools", "🚀 Guard AI - Remote Proctoring System", "🚀 LinkedIn Comment Automation"] },
+    { title: "EDUCATION", logs: ["> Loading academic records...", "🎓 B.E. in CSE (AI & Machine Learning)", "📍 Chandigarh University", "💡 CGPA: 7.98"] },
+    { title: "PUBLICATIONS", logs: ["> Scanning research portfolio...", "📄 Published @ IEEE Xplore (ICACCTech 2024)", "📄 Accepted @ ICRAAI 2025", "✅ Topic: ML for Ticket & Traffic Prediction"] },
+    { title: "CERTIFICATIONS", logs: ["> Verifying credentials...", "⭐ Salesforce Certified AI Specialist", "⭐ Microsoft Certified: Azure AI (AI-900)", "⭐ Oracle Certified Pro: Generative AI"] },
 ];
+
 
 interface TypewriterTextProps {
     text: string;
@@ -34,18 +34,21 @@ const TypewriterText: React.FC<TypewriterTextProps> = ({ text, delay = 0 }) => {
         }, 35);
 
         return () => clearInterval(interval);
-    }, [text.length]);
+    }, [text]);
 
     useEffect(() => {
-        if (delay > 0) {
-            const delayTimeout = setTimeout(() => {
+        const resetAndStart = () => {
+            setDisplayedText('');
+            setCurrentIndex(0);
+            if (delay > 0) {
+                const delayTimeout = setTimeout(startTyping, delay);
+                return () => clearTimeout(delayTimeout);
+            } else {
                 startTyping();
-            }, delay);
-            return () => clearTimeout(delayTimeout);
-        } else {
-            startTyping();
-        }
-    }, [delay, startTyping]);
+            }
+        };
+        resetAndStart();
+    }, [text, delay, startTyping]);
 
     useEffect(() => {
         setDisplayedText(text.slice(0, currentIndex + 1));
@@ -120,12 +123,11 @@ const NeuralNetwork: React.FC = () => {
 export const AIWorkstation = () => {
     const [currentStageIndex, setCurrentStageIndex] = useState(0);
     const [showCursor, setShowCursor] = useState(true);
-    const [isTyping, setIsTyping] = useState(false);
 
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentStageIndex(prev => (prev + 1) % pipelineStages.length);
-        }, 5000);
+        }, 5000); // Cycle through stages every 5 seconds
         return () => clearInterval(interval);
     }, []);
 
@@ -137,18 +139,6 @@ export const AIWorkstation = () => {
     }, []);
 
     const currentStage = pipelineStages[currentStageIndex];
-
-    const startTyping = () => {
-        setIsTyping(true);
-    };
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            startTyping();
-        }, 1000);
-
-        return () => clearTimeout(timer);
-    }, []);
 
     return (
         <div className="relative w-full h-full flex items-center justify-center p-4">
@@ -252,9 +242,9 @@ export const AIWorkstation = () => {
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={currentStage.title}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 10 }}
                                 transition={{ duration: 0.3 }}
                                 className="border-b border-green-400/30 pb-2 mb-2"
                             >
@@ -265,29 +255,31 @@ export const AIWorkstation = () => {
                             </motion.div>
                         </AnimatePresence>
 
-                        <div className="flex-grow font-mono relative z-10">
+                        <div className="flex-grow font-mono relative z-10 pt-2">
                             <AnimatePresence mode="wait">
-                                <div key={currentStage.title}>
+                                <motion.div
+                                    key={currentStage.title}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.5, delay: 0.2 }}
+                                >
                                 {currentStage.logs.map((log, i) => (
                                         <div key={`${currentStage.title}-${i}`} className="leading-relaxed flex items-center">
                                             <span className={`
-                                                ${log.startsWith('✅') ? 'text-emerald-400' : (log.startsWith('📈') ? 'text-green-200' : 'text-green-400')}
+                                                ${log.startsWith('✅') || log.startsWith('⭐') ? 'text-emerald-400' : (log.startsWith('🚀') || log.startsWith('🤖') ? 'text-cyan-300' : 'text-green-400')}
                                                 ${log.startsWith('>') ? 'animate-pulse' : ''}
                                             `}>
-                                                {log.startsWith('>') ? '>' : '•'}
+                                                {log.substring(0, 1)}
                                             </span>
                                             <span className="ml-2 text-green-300">
                                                 <TypewriterText 
-                                                    text={log.substring(1)} 
-                                                    delay={i * 1500}
+                                                    text={log.substring(2)} 
+                                                    delay={i * 300 + 500}
                                                 />
-                                                {i === currentStage.logs.length - 1 && showCursor && (
-                                                    <span className="animate-blink">▊</span>
-                                                )}
                                             </span>
                                         </div>
                                 ))}
-                                </div>
+                                </motion.div>
                             </AnimatePresence>
                         </div>
                         

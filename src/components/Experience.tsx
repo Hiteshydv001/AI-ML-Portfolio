@@ -25,58 +25,62 @@ export default function Experience() {
             transition={{ duration: 0.3, delay: idx * 0.1 }}
             className="group hover:bg-gray-50/80 rounded-2xl transition duration-200 p-4"
           >
-            <div className="flex flex-col md:flex-row items-start md:space-x-6">
+            <div className="flex flex-col md:flex-row items-center gap-6">
               {/* Image Frame */}
               <Link
                 href={`/experience/${experience.slug}`}
-                className="w-full md:w-2/5 flex-shrink-0 mb-4 md:mb-0"
+                className="w-full md:w-2/5 flex-shrink-0"
               >
-                <MacbookSVG 
-                  src={experience.image || "/images/placeholder.png"} 
-                  className="drop-shadow-lg" 
-                />
+                <div className="flex items-center justify-center">
+                  <MacbookSVG 
+                    src={experience.image || "/images/placeholder.png"} 
+                    className="drop-shadow-lg w-full max-w-lg" 
+                  />
+                </div>
               </Link>
 
               {/* Text Content */}
-              <div className="flex-1">
+              <div className="flex-1 w-full">
                 <div>
                   <Link href={`/experience/${experience.slug}`}>
                     <Heading
                       as="h3"
-                      className="font-semibold text-lg md:text-xl lg:text-xl hover:text-sky-600 transition-colors"
+                      className="font-semibold text-lg md:text-xl lg:text-xl text-gray-900"
                     >
-                      {experience.title} • {experience.company}
+                      {experience.title}
                     </Heading>
                   </Link>
-                  <Paragraph className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
-                    {experience.location} • {experience.period}
-                  </Paragraph>
-                </div>
-
-                <ul className="list-disc space-y-2 pl-4 text-sm text-zinc-600 dark:text-zinc-400 mt-4">
-                  {Array.isArray(experience.description) ? (
-                    experience.description.map((item: string, i: number) => (
-                      <li key={i} className="leading-relaxed">
-                        {item}
-                      </li>
-                    ))
-                  ) : (
-                    <li className="leading-relaxed">{experience.description}</li>
-                  )}
-                </ul>
-
-                {experience.technologies && experience.technologies.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {experience.technologies.map((tech: string, i: number) => (
-                      <span
-                        key={i}
-                        className="px-2.5 py-1 bg-sky-50 text-sky-600 text-xs rounded-full font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  <div className="text-base text-gray-600 mt-1">
+                    {experience.company} • {experience.location} • {experience.period}
                   </div>
-                )}
+
+                  <div className="text-sm text-gray-500 mt-2">
+                    {Array.isArray(experience.description) ? (
+                      <ul className="space-y-1">
+                        {experience.description.map((item: string, i: number) => (
+                          <li key={i} className="leading-relaxed">
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="leading-relaxed">{experience.description}</p>
+                    )}
+                  </div>
+
+                  {experience.technologies && experience.technologies.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {experience.technologies.map((tech: string, i: number) => (
+                        <span
+                          key={i}
+                          className="px-2.5 py-1 bg-purple-50 text-purple-600 text-xs rounded-full font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
 
                 {/* Action Buttons */}
                 <div className="flex flex-row gap-3 mt-4 items-center">

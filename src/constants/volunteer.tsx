@@ -11,7 +11,7 @@ export const societyMemberships: SocietyMembership[] = [
     ],
     logo: "/images/IAENG.jpg",
     website: "http://www.iaeng.org/",
-    certificate: "https://drive.google.com/file/d/1hJHXyrJrk2HNpjBIebEKkgm9auo1Tuhk/view?usp=sharing",
+    certificate: "https://drive.google.com/file/d/1kRmkiRSCGeuIPnP-Bozolz4wm3cGNKWp/view?usp=sharing",
     slug: "iaeng-membership"
   }
 ];
@@ -23,7 +23,7 @@ export const volunteerWork: VolunteerWork[] = [
     duration: "Nov 2023",
     location: "Thailand",
     description: [
-      "Participated in International Volunteer Day 2023 with the theme 'If Everyone Did...'",
+      "Participated in International Volunteer Day 2023 with the theme &apos;If Everyone Did...&apos;",
       "Contributed to achieving Sustainable Development Goals (SDGs) through volunteerism",
       "Supported public participation in the development process"
     ],
@@ -37,10 +37,10 @@ export const volunteerWork: VolunteerWork[] = [
       "Sustainable Development",
       "Public Engagement"
     ],
-    logo: "/images/MSDHS.jpeg",
-    certificate: "https://drive.google.com/file/d/1yb8k51o2_bYzw3BpPh1MHtiEjZHFSbHz/view?usp=sharing",
+    logo: "/images/MSDHS.jpg",
+    certificate: "https://drive.google.com/file/d/1kRmkiRSCGeuIPnP-Bozolz4wm3cGNKWp/view?usp=sharing",
     slug: "msdhs-volunteer",
-    content: "The International Volunteer Day celebration in 2023 focused on the theme 'If Everyone Did...', emphasizing the collective impact of volunteerism. Through this initiative, we worked closely with the Ministry to promote sustainable development and community engagement."
+    content: "The International Volunteer Day celebration in 2023 focused on the theme &apos;If Everyone Did...&apos;, emphasizing the collective impact of volunteerism. Through this initiative, we worked closely with the Ministry to promote sustainable development and community engagement."
   },
   {
     organization: "UNDP KENYA",
@@ -64,9 +64,9 @@ export const volunteerWork: VolunteerWork[] = [
       "Innovation Management"
     ],
     logo: "/images/UNDP.jpg",
-    certificate: "https://drive.google.com/file/d/1IGOOn-JeZWeRB1qL0z498Iq8X8_2x5kF/view?usp=sharing",
+    certificate: "https://drive.google.com/file/d/1kRmkiRSCGeuIPnP-Bozolz4wm3cGNKWp/view?usp=sharing",
     slug: "undp-kenya-volunteer",
-    thumbnail: "/images/logos/undp.png",
+    thumbnail: "/images/UNDP.jpg",
     content: "Working with UNDP Kenya was a transformative experience in promoting digital literacy and AI adoption in the public sector. The Africa Centre of Competence initiative represents a significant step forward in equipping public servants with the skills needed for the digital age."
   },
   {
@@ -91,7 +91,7 @@ export const volunteerWork: VolunteerWork[] = [
       "Team Collaboration"
     ],
     logo: "/images/AAE.jpeg",
-    certificate: "https://drive.google.com/file/d/1wkFQQlPS9NbQCQkhs2dPpXKNW9v05lQC/view?usp=sharing",
+    certificate: "https://drive.google.com/file/d/1kRmkiRSCGeuIPnP-Bozolz4wm3cGNKWp/view?usp=sharing",
     slug: "aae-awareness-lead",
     thumbnail: "/images/AAE.jpeg",
     content: "As Awareness Lead at AAE, I had the opportunity to deeply analyze and document the entrepreneurial landscape across various African countries. This role involved coordinating with multiple stakeholders and ensuring comprehensive coverage of business environments."
@@ -118,10 +118,10 @@ export const volunteerWork: VolunteerWork[] = [
       "Stakeholder Management"
     ],
     logo: "/images/AAE.jpeg",
-    certificate: "https://drive.google.com/file/d/17mQizlu7oSexk5OmC28XD-HvATe2GN6z/view?usp=sharing",
+    certificate: "https://drive.google.com/file/d/1kRmkiRSCGeuIPnP-Bozolz4wm3cGNKWp/view?usp=sharing",
     slug: "aae-publication-lead",
     thumbnail: "/images/AAE.jpeg",
-    content: "In my role as Publication Lead, I was responsible for the entire publication lifecycle, from recruiting volunteer writers to ensuring the quality and timely delivery of articles. This position allowed me to develop both leadership and editorial skills while contributing to AAE's mission."
+    content: "In my role as Publication Lead, I was responsible for the entire publication lifecycle, from recruiting volunteer writers to ensuring the quality and timely delivery of articles. This position allowed me to develop both leadership and editorial skills while contributing to AAE&apos;s mission."
   },
   {
     organization: "African Association of Entrepreneurs",
@@ -145,10 +145,10 @@ export const volunteerWork: VolunteerWork[] = [
       "Event Promotion"
     ],
     logo: "/images/AAE.jpeg",
-    certificate: "https://drive.google.com/file/d/1yAmpFQ6HjJG2-fhkgJ-nv3aOmThIuyQ4/view?usp=sharing",
+    certificate: "https://drive.google.com/file/d/1kRmkiRSCGeuIPnP-Bozolz4wm3cGNKWp/view?usp=sharing",
     slug: "aae-awareness-volunteer",
     thumbnail: "/images/AAE.jpeg",
-    content: "As an Awareness Volunteer, I worked on various initiatives to promote entrepreneurship across Africa. This role involved creating engaging content and participating in community outreach programs to increase AAE's impact."
+    content: "As an Awareness Volunteer, I worked on various initiatives to promote entrepreneurship across Africa. This role involved creating engaging content and participating in community outreach programs to increase AAE&apos;s impact."
   },
   {
     organization: "Think Blue Data",

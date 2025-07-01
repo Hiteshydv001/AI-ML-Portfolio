@@ -1,12 +1,19 @@
+import { ReactNode } from 'react';
+
 export interface Experience {
+  title: string;
   company: string;
-  position: string;
-  duration: string;
-  location: string;
-  description: string[];
-  skills: string[];
-  logo: string;
-  website?: string;
+  location?: string;
+  period?: string;
+  description: string[] | string;
+  technologies?: string[];
+  image?: string;
+  companyUrl?: string;
+  certificateUrl?: string;
+  additionalCertificateUrl?: string;
+  frenchWebsiteUrl?: string;
+  githubUrl?: string;
+  deploymentUrl?: string;
   slug: string;
-  content: string;
+  content?: ReactNode;
 } 

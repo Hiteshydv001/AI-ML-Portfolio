@@ -54,23 +54,29 @@ export default function Experience() {
                 </div>
 
                 <ul className="list-disc space-y-2 pl-4 text-sm text-zinc-600 dark:text-zinc-400 mt-4">
-                  {experience.description.map((item, i) => (
-                    <li key={i} className="leading-relaxed">
-                      {item}
-                    </li>
-                  ))}
+                  {Array.isArray(experience.description) ? (
+                    experience.description.map((item: string, i: number) => (
+                      <li key={i} className="leading-relaxed">
+                        {item}
+                      </li>
+                    ))
+                  ) : (
+                    <li className="leading-relaxed">{experience.description}</li>
+                  )}
                 </ul>
 
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {experience.technologies.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="px-2.5 py-1 bg-sky-50 text-sky-600 text-xs rounded-full font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                {experience.technologies && experience.technologies.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {experience.technologies.map((tech: string, i: number) => (
+                      <span
+                        key={i}
+                        className="px-2.5 py-1 bg-sky-50 text-sky-600 text-xs rounded-full font-medium"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                )}
 
                 {/* Action Buttons */}
                 <div className="flex flex-row gap-3 mt-4 items-center">

@@ -37,7 +37,7 @@ export const volunteerWork: VolunteerWork[] = [
       "Sustainable Development",
       "Public Engagement"
     ],
-    logo: "/images/MSDHS.jpg",
+    logo: "/images/MSDHS.jpeg",
     certificate: "https://drive.google.com/file/d/1kRmkiRSCGeuIPnP-Bozolz4wm3cGNKWp/view?usp=sharing",
     slug: "msdhs-volunteer",
     content: "The International Volunteer Day celebration in 2023 focused on the theme &apos;If Everyone Did...&apos;, emphasizing the collective impact of volunteerism. Through this initiative, we worked closely with the Ministry to promote sustainable development and community engagement."

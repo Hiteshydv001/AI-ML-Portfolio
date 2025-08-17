@@ -426,7 +426,7 @@ export default function GuessDrawingGame() {
                 </li>
               ))
             ) : (
-              <li className="text-center py-4 text-gray-400">Draw something and click "Guess"!</li>
+              <li className="text-center py-4 text-gray-400">Draw something and click &quot;Guess&quot;!</li>
             )}
           </ul>
         </div>

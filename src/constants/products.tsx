@@ -3,9 +3,47 @@ const multiRagAgent = "/images/MultiRAG.png";
 const linkedinAutomate = "/images/LinkedinAutomate.png";
 const guardAI = "/images/GuardAI.png";
 const wasteClassification = "/images/WasteClassification.png";
+
+const aiWaifu = "/images/AIWaifu.png";
 const hiteshBot = "/images/Hiteshbot.png";
 
 export const products = [
+  {
+    href: "https://github.com/Hiteshydv001/AI-Waifu",
+  livePreviewUrl: "www.example.com",
+    title: "Project Ananya - AI Waifu Core",
+    description:
+      "An interactive, voice-driven AI companion with modular LLM, advanced TTS, real-time Gradio UI, and persistent memory. Persona: Ananya, a culturally-aware friend who speaks English & Hinglish.",
+    thumbnail: aiWaifu,
+    images: [aiWaifu],
+    stack: [
+      "Python",
+      "Gradio",
+      "faster-whisper",
+      "Coqui TTS",
+      "Kokoro TTS",
+      "Groq",
+      "Ollama",
+      "OpenAI",
+      "ChromaDB"
+    ],
+    slug: "ai-waifu-core",
+    content: (
+      <div>
+        <p>
+          Project Ananya is a modular framework for building personalized AI companions. Features multi-backend LLM (Groq, Ollama, OpenAI), dual TTS (Coqui XTTS v2, Kokoro), real-time Gradio UI, long-term memory with ChromaDB, and a dynamic 3D avatar. Persona, voice, and avatar are fully customizable via YAML and config files.
+        </p>
+        <ul>
+          <li>Multi-backend LLM: Groq, Ollama, OpenAI</li>
+          <li>Dual TTS: Coqui XTTS v2 (voice cloning), Kokoro (local, fast)</li>
+          <li>Real-time Gradio UI with streaming mic/audio</li>
+          <li>Persistent memory (ChromaDB vector store)</li>
+          <li>Dynamic 3D avatar (VRM, lip-sync)</li>
+          <li>Persona & voice fully configurable</li>
+        </ul>
+      </div>
+    ),
+  },
   {
     href: "https://github.com/Hiteshydv001/Portfolio",
     livePreviewUrl: "https://hitesh-bot-portfolio.vercel.app/",

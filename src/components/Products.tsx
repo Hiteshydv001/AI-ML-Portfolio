@@ -7,10 +7,22 @@ import Link from "next/link";
 import { Paragraph } from "./Paragraph";
 import { motion } from "framer-motion";
 import { MacbookSVG } from "./MacbookSVG";
+import GithubStats from "./GithubStats";
 
 export const Products = () => {
   return (
     <div>
+
+
+
+      {/* Standalone, Creative GitHub Stats Section (after Core Tech Stack) */}
+      <div className="w-full flex items-center justify-center mb-12 mt-8">
+        <div className="w-full max-w-5xl">
+          <GithubStats />
+        </div>
+      </div>
+
+      {/* Projects List */}
       <div className="grid grid-cols-1 gap-10">
         {products.map((product: Product, idx: number) => (
           <motion.div
@@ -60,7 +72,6 @@ export const Products = () => {
                     </span>
                   ))}
                 </div>
-                
                 {/* Action Buttons */}
                 <div className="flex flex-row gap-3 mt-4 items-center">
                   <a

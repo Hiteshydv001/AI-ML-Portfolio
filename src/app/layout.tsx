@@ -23,7 +23,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={twMerge(inter.className, "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50")}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body className={twMerge(inter.className, "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50")}> 
         <Sidebar />
         <div className="p-4 lg:ml-64">
           <div className="bg-white/70 backdrop-blur-xl rounded-lg border border-gray-200/60 min-h-screen">

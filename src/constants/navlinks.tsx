@@ -55,8 +55,8 @@ export const navLinks: NavLink[] = [
     download: true,
   },
   {
-    title: "Contact",
-    href: "/contact",
-    icon: IconMessage,
+    title: "Drawing Game",
+    href: "/games/guess-drawing",
+    icon: IconPencil,
   },
 ];

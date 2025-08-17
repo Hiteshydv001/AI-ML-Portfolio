@@ -34,6 +34,7 @@ export default function Home() {
           <AIWorkstation />
         </div>
 
+
         {/* Projects and Tech Stack */}
         <div className="mt-8">
           <Products />

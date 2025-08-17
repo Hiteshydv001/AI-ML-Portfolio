@@ -22,12 +22,25 @@ function ArrowLeftIcon(props: any) {
   );
 }
 
+type MetaType = {
+  title: string;
+  date: string;
+  description: string;
+  image: string;
+  tags?: string[];
+};
+
 export function BlogLayout({
   children,
   meta,
   isRssFeed = false,
   previousPathname,
-}: any) {
+}: {
+  children: React.ReactNode;
+  meta: MetaType;
+  isRssFeed?: boolean;
+  previousPathname?: string;
+}) {
   let router = useRouter();
 
   return (
@@ -36,8 +49,8 @@ export function BlogLayout({
         <header className="flex flex-col">
           <Link
             type="button"
-            href="/blog"
-            aria-label="Go back to articles"
+            href="/research"
+            aria-label="Go back to research papers"
             className="group mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition  "
           >
             <ArrowLeftIcon className="h-4 w-4 stroke-zinc-500 transition group-hover:stroke-zinc-700 d" />

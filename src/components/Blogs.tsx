@@ -26,7 +26,7 @@ export const Blogs = ({ blogs }: { blogs: Blog[] }) => {
         >
           <Link
             key={`blog-${blog.title}`}
-            href={`/blog/${blog.slug}`}
+            href={`/research/${blog.slug}`}
             className="relative my-10 block"
             onMouseEnter={() => setHovered(blog.slug)}
             onMouseLeave={() => setHovered(null)}
@@ -54,7 +54,7 @@ export const Blogs = ({ blogs }: { blogs: Blog[] }) => {
                 />
               )}
             </AnimatePresence>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative z-20">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative z-20 p-4 border border-neutral-200 rounded-lg">
               <Image
                 src={blog.image}
                 alt="thumbnail"

@@ -39,8 +39,8 @@ export const navLinks: NavLink[] = [
     icon: IconCode,
   },
   {
-    title: "Blog",
-    href: "/blog",
+    title: "Research",
+    href: "/research",
     icon: IconPencil,
   },
   {

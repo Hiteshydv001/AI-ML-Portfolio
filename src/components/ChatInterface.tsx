@@ -157,18 +157,18 @@ export const ChatInterface = () => {
             </div>
             
             {/* Main chat container */}
-            <div className="relative h-full rounded-2xl border border-slate-700/50 bg-slate-900/90 backdrop-blur-xl shadow-2xl overflow-hidden">
+            <div className="relative h-full rounded-2xl border border-gray-200 bg-white/95 backdrop-blur-xl shadow hover:shadow-md transition duration-200 overflow-hidden">
                 {/* Header */}
-                <div className="bg-gradient-to-r from-slate-800 to-slate-900 border-b border-slate-700/50 p-4">
+                <div className="bg-gradient-to-r from-gray-50 to-white border-b border-gray-200 p-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-2">
                             <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-                            <h3 className="text-slate-200 font-semibold">AI Assistant</h3>
+                            <h3 className="text-gray-800 font-semibold">AI Assistant</h3>
                         </div>
                         <div className="flex space-x-1">
-                            <div className="w-2 h-2 rounded-full bg-slate-600" />
-                            <div className="w-2 h-2 rounded-full bg-slate-600" />
-                            <div className="w-2 h-2 rounded-full bg-slate-600" />
+                            <div className="w-2 h-2 rounded-full bg-gray-400" />
+                            <div className="w-2 h-2 rounded-full bg-gray-400" />
+                            <div className="w-2 h-2 rounded-full bg-gray-400" />
                         </div>
                     </div>
                 </div>
@@ -187,8 +187,8 @@ export const ChatInterface = () => {
                                 <div className={`
                                     max-w-[80%] rounded-xl p-4 text-sm md:text-base
                                     ${message.role === 'user' 
-                                        ? 'bg-gradient-to-br from-sky-500 to-blue-600 text-white shadow-lg shadow-sky-500/20' 
-                                        : 'bg-gradient-to-br from-slate-800 to-slate-900 text-slate-200 shadow-lg border border-slate-700/50'
+                                        ? 'bg-gradient-to-br from-sky-500 to-blue-600 text-white shadow hover:shadow-md transition duration-200' 
+                                        : 'bg-gray-50 text-gray-800 shadow hover:shadow-md transition duration-200 border border-gray-200'
                                     }
                                 `}>
                                     <p className="whitespace-pre-wrap leading-relaxed">
@@ -221,16 +221,16 @@ export const ChatInterface = () => {
                 </div>
 
                 {/* Input Area */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 bg-slate-900/95 border-t border-slate-800">
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-200">
                     <form onSubmit={handleSubmit} className="relative">
                         <input
                             type="text"
                             value={input}
                             onChange={handleInputChange}
                             placeholder="Type your message..."
-                            className="w-full bg-slate-800 text-slate-200 rounded-xl pl-6 pr-14 py-4 text-sm md:text-base border border-slate-700 
+                            className="w-full bg-gray-50 text-gray-800 rounded-xl pl-6 pr-14 py-4 text-sm md:text-base border border-gray-200 
                                      focus:outline-none focus:border-sky-500/50 focus:ring-2 focus:ring-sky-500/20 
-                                     placeholder-slate-400 shadow-lg transition-all duration-200"
+                                     placeholder-gray-400 shadow hover:shadow-md transition-all duration-200"
                             disabled={isLoading}
                         />
                         <button

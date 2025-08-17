@@ -23,7 +23,7 @@ export default function Experience() {
               y: 0,
             }}
             transition={{ duration: 0.3, delay: idx * 0.1 }}
-            className="group hover:bg-gray-50/80 rounded-2xl transition duration-200 p-4"
+            className="group hover:bg-gray-50/80 rounded-2xl transition duration-200 p-4 border border-gray-200 shadow hover:shadow-md"
           >
             <div className="flex flex-col md:flex-row items-center gap-6">
               {/* Image Frame */}
@@ -83,12 +83,16 @@ export default function Experience() {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-row gap-3 mt-4 items-center">
+                <div className="flex flex-wrap gap-2 mt-4 items-center">
                   <Link
                     href={`/experience/${experience.slug}`}
-                    className="inline-flex items-center gap-1.5 group/button rounded-full hover:scale-105 focus:outline-none transition ring-offset-gray-900 bg-gray-800 text-white shadow-sm shadow-black/10 sm:backdrop-blur-sm group-hover/button:bg-gray-700 group-hover/button:scale-105 focus-visible:ring-1 focus-visible:ring-offset-2 ring-gray-50/60 text-xs font-medium px-3 py-1.5 origin-left"
+                    className="inline-flex items-center gap-1.5 group/button rounded-full hover:scale-105 focus:outline-none transition 
+                             bg-gray-800 text-white shadow-sm shadow-black/10 backdrop-blur-sm group-hover/button:bg-gray-700 
+                             focus-visible:ring-2 focus-visible:ring-offset-2 ring-gray-50/60 
+                             text-[13px] font-medium px-4 py-2 sm:text-sm sm:px-4 sm:py-2"
                   >
-                    View Details
+                    <span className="hidden sm:inline">View Details</span>
+                    <span className="sm:hidden">Details</span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -111,7 +115,10 @@ export default function Experience() {
                       href={experience.companyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 group/button rounded-full hover:scale-105 focus:outline-none transition ring-offset-gray-900 bg-white text-gray-800 border border-gray-200 shadow-sm sm:backdrop-blur-sm group-hover/button:bg-gray-50 group-hover/button:scale-105 focus-visible:ring-1 focus-visible:ring-offset-2 ring-gray-50/60 text-xs font-medium px-3 py-1.5 origin-left"
+                      className="inline-flex items-center gap-1.5 group/button rounded-full hover:scale-105 focus:outline-none transition 
+                               bg-white text-gray-800 border border-gray-200 shadow-sm backdrop-blur-sm group-hover/button:bg-gray-50
+                               focus-visible:ring-2 focus-visible:ring-offset-2 ring-gray-50/60 
+                               text-[13px] font-medium px-4 py-2 sm:text-sm sm:px-4 sm:py-2"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +135,8 @@ export default function Experience() {
                         <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
                         <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
                       </svg>
-                      Company
+                      <span className="hidden sm:inline">Company</span>
+                      <span className="sm:hidden">Link</span>
                     </a>
                   )}
 
@@ -137,9 +145,13 @@ export default function Experience() {
                       href={experience.certificateUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 group/button rounded-full hover:scale-105 focus:outline-none transition ring-offset-gray-900 bg-white text-gray-800 border border-gray-200 shadow-sm sm:backdrop-blur-sm group-hover/button:bg-gray-50 group-hover/button:scale-105 focus-visible:ring-1 focus-visible:ring-offset-2 ring-gray-50/60 text-xs font-medium px-3 py-1.5 origin-left"
+                      className="inline-flex items-center gap-1.5 group/button rounded-full hover:scale-105 focus:outline-none transition 
+                               bg-white text-gray-800 border border-gray-200 shadow-sm backdrop-blur-sm group-hover/button:bg-gray-50
+                               focus-visible:ring-2 focus-visible:ring-offset-2 ring-gray-50/60 
+                               text-[13px] font-medium px-4 py-2 sm:text-sm sm:px-4 sm:py-2"
                     >
-                      Certificate
+                      <span className="hidden sm:inline">Certificate</span>
+                      <span className="sm:hidden">Cert</span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"

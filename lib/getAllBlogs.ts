@@ -1,23 +1,28 @@
 import glob from "fast-glob";
 import * as path from "path";
 
-async function importBlog(blogFileNames: any) {
-  let { meta, default: component } = await import(
-    `src/app/blog/${blogFileNames}`
-  );
-  return {
-    slug: blogFileNames.replace(/(\/content)?\.mdx$/, ""),
-    ...meta,
-    component,
-  };
-}
+// Remove the importBlog function as we're now using static data
 
 export async function getAllBlogs() {
-  let blogFileNames = await glob(["*.mdx", "*/content.mdx"], {
-    cwd: path.join(process.cwd(), "src/app/blog"),
-  });
-
-  let blogs = await Promise.all(blogFileNames.map(importBlog));
+  // Define the research papers metadata directly
+  const blogs = [
+    {
+      slug: "train-ticket-prediction",
+      date: "2024-11-17",
+      title: "Train Waitlisted Ticket Confirmation Prediction Using Machine Learning",
+      description: "A machine learning model to predict the confirmation probability of waitlisted train tickets, analyzing historical Indian Railways data to support better travel planning decisions.",
+      image: "/images/Publication-2.png",
+      tags: ["Machine Learning", "Prediction", "Python", "Research"]
+    },
+    {
+      slug: "weather-traffic-routing",
+      date: "2025-02-21",
+      title: "Weather-Integrated Traffic Routing with Dynamic Speed Prediction",
+      description: "Accepted at ICRAAI 2025, this research focuses on integrating real-time weather data into traffic routing algorithms for smart city applications and designing AI models for speed prediction.",
+      image: "/images/Publication-1.png",
+      tags: ["AI", "Smart Cities", "Traffic Optimization", "Research"]
+    }
+  ];
 
   return blogs.sort((a, b) => {
     const dateA = new Date(a.date);

@@ -147,180 +147,105 @@ export const ChatInterface = () => {
     };
 
     return (
-        <div className="relative w-full h-full flex items-center justify-center p-4">
-            <svg viewBox="0 0 1200 800" className="w-full max-w-7xl drop-shadow-2xl">
-                <defs>
-                    <linearGradient id="monitor-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#020617" />
-                        <stop offset="50%" stopColor="#0f172a" />
-                        <stop offset="100%" stopColor="#1e293b" />
-                    </linearGradient>
-                    
-                    <radialGradient id="chat-ambient-light" cx="50%" cy="0%" r="100%">
-                        <stop offset="0%" stopColor="#4ade8020" />
-                        <stop offset="100%" stopColor="#00000000" />
-                    </radialGradient>
-
-                    <filter id="chat-glow">
-                        <feGaussianBlur stdDeviation="2" result="base-blur" />
-                        <feColorMatrix
-                            in="base-blur"
-                            type="matrix"
-                            values="0 0 0 0 0.29
-                                    0 0 0 0 0.87
-                                    0 0 0 0 0.49
-                                    0 0 0 1 0"
-                            result="green-glow"
-                        />
-                        <feMerge>
-                            <feMergeNode in="green-glow" />
-                            <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                    </filter>
-
-                    <filter id="chat-shadow">
-                        <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#000" floodOpacity="0.3" />
-                    </filter>
-
-                    <pattern id="chat-grid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                        <path
-                            d="M 20 0 L 0 0 0 20"
-                            fill="none"
-                            stroke="#4ade8008"
-                            strokeWidth="1"
-                        />
-                    </pattern>
-                </defs>
-
-                {/* Monitor Stand */}
-                <path 
-                    d="M 520 720 C 520 720, 560 715, 600 715 C 640 715, 680 720, 680 720 L 720 760 L 480 760 Z" 
-                    fill="url(#monitor-gradient)"
-                    filter="url(#chat-shadow)"
-                />
-                <path
-                    d="M 590 620 Q 590 670, 590 720 L 610 720 Q 610 670, 610 620 Z"
-                    fill="#1e293b"
-                />
-
-                {/* Monitor Frame */}
-                <rect
-                    x="150" y="40" width="900" height="580" rx="30"
-                    fill="#1e293b"
-                    filter="url(#chat-shadow)"
-                />
-                <rect
-                    x="157" y="47" width="886" height="566" rx="27"
-                    fill="#0f172a"
-                />
-                
-                {/* Screen */}
-                <rect
-                    x="172" y="62" width="856" height="536" rx="20"
-                    fill="url(#monitor-gradient)"
-                />
-                <rect
-                    x="172" y="62" width="856" height="536" rx="20"
-                    fill="url(#chat-grid)"
-                />
-                <rect
-                    x="172" y="62" width="856" height="536" rx="20"
-                    fill="url(#chat-ambient-light)"
-                    stroke="#4ade80"
-                    strokeWidth="2"
-                    style={{ filter: 'url(#chat-glow)' }}
-                />
-
-                {/* Window Controls */}
-                <g transform="translate(187, 77)">
-                    <circle cx="15" cy="15" r="6" fill="#ef4444" />
-                    <circle cx="37" cy="15" r="6" fill="#f59e0b" />
-                    <circle cx="59" cy="15" r="6" fill="#10b981" />
-                </g>
-
-                {/* Chat Content */}
-                <foreignObject x="187" y="107" width="826" height="476">
-                    <div className="h-full flex flex-col bg-gradient-to-b from-slate-900/90 to-black/40 rounded-lg backdrop-blur-sm text-green-400 font-mono shadow-xl">
-                        {/* Messages Area */}
-                        <div className="flex-grow overflow-y-auto p-4 md:p-6 space-y-4 text-sm md:text-base">
-                            <AnimatePresence mode="popLayout">
-                                {messages.map((message: Message, index: number) => (
-                                    <motion.div
-                                        key={index}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: -20 }}
-                                        className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                                    >
-                                        <div className={`
-                                            max-w-[80%] rounded-lg p-3 text-sm md:text-base font-medium
-                                            ${message.role === 'user' 
-                                                ? 'bg-green-500/30 border border-green-500/40 text-green-300 shadow-green-500/20 shadow-lg' 
-                                                : 'bg-slate-800/80 border border-slate-600 text-green-300 shadow-lg'
-                                            }
-                                        `}>
-                                            <p className="whitespace-pre-wrap leading-relaxed tracking-wide">
-                                                {message.content}
-                                            </p>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                                {(isLoading || currentResponse) && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        className="flex justify-start"
-                                    >
-                                        <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-3 text-sm">
-                                            {currentResponse ? (
-                                                <p className="whitespace-pre-wrap">{currentResponse}</p>
-                                            ) : (
-                                                <div className="flex space-x-2">
-                                                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                                                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
-                                                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" style={{ animationDelay: '300ms' }} />
-                                                </div>
-                                            )}
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                            <div ref={messagesEndRef} />
+        <div className="relative w-full h-[600px] max-w-4xl mx-auto p-4">
+            <div className="absolute inset-0 bg-gradient-to-b from-sky-500/10 via-blue-500/5 to-purple-800/10 rounded-2xl" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(0,0,0,0))]" />
+            
+            {/* Animated border effect */}
+            <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-sky-500 via-blue-600 to-purple-700 opacity-20 animate-gradient-x" />
+            </div>
+            
+            {/* Main chat container */}
+            <div className="relative h-full rounded-2xl border border-slate-700/50 bg-slate-900/90 backdrop-blur-xl shadow-2xl overflow-hidden">
+                {/* Header */}
+                <div className="bg-gradient-to-r from-slate-800 to-slate-900 border-b border-slate-700/50 p-4">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                            <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
+                            <h3 className="text-slate-200 font-semibold">AI Assistant</h3>
                         </div>
-                        
-                        {/* Input Area */}
-                        <div className="p-4 md:p-6 border-t border-slate-600/50 bg-slate-900/50">
-                            <form onSubmit={handleSubmit} className="relative">
-                                <input
-                                    type="text"
-                                    value={input}
-                                    onChange={handleInputChange}
-                                    placeholder="Type your message..."
-                                    className="w-full bg-slate-800/90 text-green-300 rounded-lg pl-6 pr-14 py-4 text-sm md:text-base font-medium border border-slate-600 focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-500/20 placeholder-green-500/40 shadow-lg transition-all duration-200"
-                                    disabled={isLoading}
-                                />
-                                <button
-                                    type="submit"
-                                    disabled={isLoading}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-green-400 hover:text-green-300 disabled:opacity-50 disabled:hover:text-green-400"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-                                    </svg>
-                                </button>
-                            </form>
+                        <div className="flex space-x-1">
+                            <div className="w-2 h-2 rounded-full bg-slate-600" />
+                            <div className="w-2 h-2 rounded-full bg-slate-600" />
+                            <div className="w-2 h-2 rounded-full bg-slate-600" />
                         </div>
                     </div>
-                </foreignObject>
+                </div>
 
-                {/* Decorative Circuit Lines */}
-                <g className="circuit-lines" stroke="#4ade8015" strokeWidth="1.5">
-                    <path d="M 75 150 Q 105 150, 135 180" fill="none" />
-                    <path d="M 75 300 Q 105 300, 135 270" fill="none" />
-                    <path d="M 1125 150 Q 1095 150, 1065 180" fill="none" />
-                    <path d="M 1125 300 Q 1095 300, 1065 270" fill="none" />
-                </g>
-            </svg>
+                {/* Messages Area */}
+                <div className="h-[calc(100%-8rem)] overflow-y-auto p-4 space-y-4">
+                    <AnimatePresence mode="popLayout">
+                        {messages.map((message: Message, index: number) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -20 }}
+                                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                            >
+                                <div className={`
+                                    max-w-[80%] rounded-xl p-4 text-sm md:text-base
+                                    ${message.role === 'user' 
+                                        ? 'bg-gradient-to-br from-sky-500 to-blue-600 text-white shadow-lg shadow-sky-500/20' 
+                                        : 'bg-gradient-to-br from-slate-800 to-slate-900 text-slate-200 shadow-lg border border-slate-700/50'
+                                    }
+                                `}>
+                                    <p className="whitespace-pre-wrap leading-relaxed">
+                                        {message.content}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        ))}
+                        {(isLoading || currentResponse) && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="flex justify-start"
+                            >
+                                <div className="bg-gradient-to-br from-slate-800 to-slate-900 text-slate-200 rounded-xl p-4 shadow-lg border border-slate-700/50">
+                                    {currentResponse ? (
+                                        <p className="whitespace-pre-wrap leading-relaxed">{currentResponse}</p>
+                                    ) : (
+                                        <div className="flex space-x-2">
+                                            <div className="w-2 h-2 bg-sky-500 rounded-full animate-pulse" />
+                                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '150ms' }} />
+                                            <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse" style={{ animationDelay: '300ms' }} />
+                                        </div>
+                                    )}
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                    <div ref={messagesEndRef} />
+                </div>
+
+                {/* Input Area */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-slate-900/95 border-t border-slate-800">
+                    <form onSubmit={handleSubmit} className="relative">
+                        <input
+                            type="text"
+                            value={input}
+                            onChange={handleInputChange}
+                            placeholder="Type your message..."
+                            className="w-full bg-slate-800 text-slate-200 rounded-xl pl-6 pr-14 py-4 text-sm md:text-base border border-slate-700 
+                                     focus:outline-none focus:border-sky-500/50 focus:ring-2 focus:ring-sky-500/20 
+                                     placeholder-slate-400 shadow-lg transition-all duration-200"
+                            disabled={isLoading}
+                        />
+                        <button
+                            type="submit"
+                            disabled={isLoading}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-sky-500 hover:text-sky-400 disabled:opacity-50 
+                                     disabled:hover:text-sky-500 transition-colors duration-200"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                                <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 };

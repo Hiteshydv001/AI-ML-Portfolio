@@ -42,10 +42,21 @@ export default function Home() {
         </div>
 
         {/* Chat Interface */}
-        <div className="mt-8 mb-4">
-          <h2 className="text-4xl font-bold mb-4 text-center pt-10 pb-10">Ask Anything about Hitesh!</h2>
-          <div className="h-[450px] w-full max-w-3xl mx-auto">
-            <ChatInterface />
+        <div className="mt-16 mb-8">
+          <div className="text-center mb-8 px-4">
+            <h2 className="text-3xl md:text-4xl font-black tracking-tight bg-gradient-to-r from-sky-500 to-blue-600 bg-clip-text text-transparent [text-wrap:balance]">
+              Ask Anything about Hitesh! ✨
+            </h2>
+            <p className="text-gray-700 text-base md:text-lg mt-3 font-medium antialiased [text-wrap:balance]">
+              Chat with my AI assistant to learn more about my work, experience, and projects
+            </p>
+          </div>
+
+          {/* Chat interface */}
+          <div className="max-w-3xl mx-auto bg-white/60 backdrop-blur rounded-2xl border border-gray-200/60 shadow-lg p-1">
+            <div className="h-[450px]">
+              <ChatInterface />
+            </div>
           </div>
         </div>
       </Container>

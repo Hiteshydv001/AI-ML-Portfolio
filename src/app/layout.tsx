@@ -28,7 +28,7 @@ export default function RootLayout({
       </head>
       <body className={twMerge(inter.className, "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50")}> 
         <Sidebar />
-        <div className="p-4 lg:ml-64">
+        <div className="pt-20 px-4 pb-4 lg:pt-4 lg:ml-64">
           <div className="bg-white/70 backdrop-blur-xl rounded-lg border border-gray-200/60 min-h-screen">
             {children}
             <Footer />

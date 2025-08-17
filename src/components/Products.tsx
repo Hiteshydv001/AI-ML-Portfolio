@@ -36,7 +36,7 @@ export const Products = () => {
               y: 0,
             }}
             transition={{ duration: 0.3, delay: idx * 0.1 }}
-            className="group hover:bg-gray-50/80 rounded-2xl transition duration-200 p-4"
+            className="group hover:bg-gray-50/80 rounded-2xl transition duration-200 p-4 border border-gray-200 shadow hover:shadow-md"
           >
             <div className="flex flex-col md:flex-row items-center gap-6">
               {/* Image Frame */}

@@ -16,8 +16,8 @@ export const TerminalWindow = ({ logs, title, compact = false }: { logs: string[
       </div>
       
       {/* Terminal Content */}
-      <div className={`p-2 font-mono text-green-400 ${compact ? 'text-[8px] leading-tight' : 'text-[10px] leading-relaxed'}`}>
-        <p className="text-gray-400">{title}</p>
+      <div className={`p-3 font-mono text-green-400 ${compact ? 'text-xs leading-tight' : 'text-sm leading-relaxed'}`}>
+        <p className="text-gray-400 font-medium">{title}</p>
         <AnimatePresence>
             {logs.map((log, index) => (
                 <motion.p

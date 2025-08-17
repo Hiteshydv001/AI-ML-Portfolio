@@ -3,7 +3,6 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import './loading.module.css';
 
 const labels = [
   "cat", "dog", "car", "tree", "house", "bicycle", "fish", "flower", "star", "cloud"

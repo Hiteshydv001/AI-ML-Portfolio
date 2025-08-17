@@ -240,9 +240,9 @@ export const ChatInterface = () => {
 
                 {/* Chat Content */}
                 <foreignObject x="187" y="107" width="826" height="476">
-                    <div className="h-full flex flex-col bg-gradient-to-b from-transparent to-black/20 rounded-lg backdrop-blur-sm text-green-400 font-mono">
+                    <div className="h-full flex flex-col bg-gradient-to-b from-slate-900/90 to-black/40 rounded-lg backdrop-blur-sm text-green-400 font-mono shadow-xl">
                         {/* Messages Area */}
-                        <div className="flex-grow overflow-y-auto p-6 space-y-4 text-base">
+                        <div className="flex-grow overflow-y-auto p-4 md:p-6 space-y-4 text-sm md:text-base">
                             <AnimatePresence mode="popLayout">
                                 {messages.map((message: Message, index: number) => (
                                     <motion.div
@@ -253,13 +253,13 @@ export const ChatInterface = () => {
                                         className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                                     >
                                         <div className={`
-                                            max-w-[80%] rounded-lg p-3 text-sm
+                                            max-w-[80%] rounded-lg p-3 text-sm md:text-base font-medium
                                             ${message.role === 'user' 
-                                                ? 'bg-green-500/20 border border-green-500/30 text-green-400' 
-                                                : 'bg-slate-800/50 border border-slate-700 text-green-400'
+                                                ? 'bg-green-500/30 border border-green-500/40 text-green-300 shadow-green-500/20 shadow-lg' 
+                                                : 'bg-slate-800/80 border border-slate-600 text-green-300 shadow-lg'
                                             }
                                         `}>
-                                            <p className="whitespace-pre-wrap">
+                                            <p className="whitespace-pre-wrap leading-relaxed tracking-wide">
                                                 {message.content}
                                             </p>
                                         </div>
@@ -289,14 +289,14 @@ export const ChatInterface = () => {
                         </div>
                         
                         {/* Input Area */}
-                        <div className="p-6 border-t border-slate-700/50">
+                        <div className="p-4 md:p-6 border-t border-slate-600/50 bg-slate-900/50">
                             <form onSubmit={handleSubmit} className="relative">
                                 <input
                                     type="text"
                                     value={input}
                                     onChange={handleInputChange}
                                     placeholder="Type your message..."
-                                    className="w-full bg-slate-800/50 text-green-400 rounded-lg pl-6 pr-14 py-4 text-base border border-slate-700 focus:outline-none focus:border-green-500/50 placeholder-green-600/30"
+                                    className="w-full bg-slate-800/90 text-green-300 rounded-lg pl-6 pr-14 py-4 text-sm md:text-base font-medium border border-slate-600 focus:outline-none focus:border-green-400 focus:ring-2 focus:ring-green-500/20 placeholder-green-500/40 shadow-lg transition-all duration-200"
                                     disabled={isLoading}
                                 />
                                 <button

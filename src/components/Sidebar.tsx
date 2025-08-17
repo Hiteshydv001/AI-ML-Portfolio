@@ -37,31 +37,12 @@ export const Sidebar = () => {
     <>
       {/* Hamburger button for mobile */}
       <button
-        className="fixed top-4 left-4 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 lg:hidden focus:outline-none focus:ring-2 focus:ring-sky-400 transition-all"
+        className="fixed top-4 left-4 z-50 flex items-center justify-center w-10 h-10 rounded-lg bg-white shadow-md border border-gray-200/60 lg:hidden focus:outline-none focus:ring-2 focus:ring-sky-400 transition-all"
         onClick={() => setOpen(true)}
         aria-label={open ? "Close sidebar" : "Open sidebar"}
-        style={{ boxShadow: '0 2px 16px 0 rgba(0,0,0,0.08)' }}
+        style={{ boxShadow: '0 2px 8px 0 rgba(0,0,0,0.05)' }}
       >
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="6" y="10" width="20" height="2.5" rx="1.25" fill="#22223b"
-            style={{
-              transition: 'all 0.3s cubic-bezier(.4,2,.6,1)',
-              transform: open ? 'translateY(8px) rotate(45deg)' : 'none'
-            }}
-          />
-          <rect x="6" y="15" width="20" height="2.5" rx="1.25" fill="#22223b"
-            style={{
-              transition: 'all 0.3s cubic-bezier(.4,2,.6,1)',
-              opacity: open ? 0 : 1
-            }}
-          />
-          <rect x="6" y="20" width="20" height="2.5" rx="1.25" fill="#22223b"
-            style={{
-              transition: 'all 0.3s cubic-bezier(.4,2,.6,1)',
-              transform: open ? 'translateY(-8px) rotate(-45deg)' : 'none'
-            }}
-          />
-        </svg>
+        <IconLayoutSidebarRightCollapse className="w-5 h-5 text-gray-700" strokeWidth={1.5} />
       </button>
 
       {/* Overlay and sidebar for mobile */}
@@ -84,7 +65,7 @@ export const Sidebar = () => {
               transition={{ duration: 0.25, ease: "easeInOut" }}
               className="fixed top-0 left-0 z-50 w-64 h-screen bg-neutral-100 border-r border-gray-200/60 shadow-xl flex flex-col"
             >
-              <div className="h-full px-6 py-8 overflow-y-auto flex flex-col">
+              <div className="h-full px-6 py-8 overflow-y-auto flex flex-col no-scrollbar">
                 {/* Close button */}
                 <button
                   className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-white border border-gray-200 shadow hover:bg-gray-100 transition lg:hidden"
@@ -104,7 +85,7 @@ export const Sidebar = () => {
 
       {/* Always show sidebar on desktop */}
       <aside className="hidden lg:fixed lg:top-0 lg:left-0 lg:z-40 lg:w-64 lg:h-screen lg:bg-neutral-100 lg:border-r lg:border-gray-200/60 lg:shadow-xl lg:flex lg:flex-col">
-        <div className="h-full px-6 py-8 overflow-y-auto flex flex-col">
+        <div className="h-full px-6 py-8 overflow-y-auto flex flex-col no-scrollbar">
           <SidebarHeader />
           <Navigation setOpen={setOpen} />
         </div>

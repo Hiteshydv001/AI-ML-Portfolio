@@ -8,8 +8,6 @@
 
 <p align="center">
   <a href="https://hitesh-aiml.vercel.app/" target="_blank"><img src="https://img.shields.io/badge/Live%20Demo-hitesh--bot--portfolio.vercel.app-blue?style=for-the-badge&logo=vercel" alt="Live Demo"></a>
-  <a href="https://github.com/Hiteshydv001/hiteshydv001-ai-ml-portfolio/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Hiteshydv001/hiteshydv001-ai-ml-portfolio?style=for-the-badge" alt="License"></a>
-  <img src="https://img.shields.io/github/last-commit/Hiteshydv001/hiteshydv001-ai-ml-portfolio?style=for-the-badge&logo=github" alt="Last Commit">
 </p>
 
 This isn't just a portfolio; it's a living showcase of my skills as an AI/ML Engineer. It's a full-stack application designed to demonstrate proficiency in modern web technologies, generative AI, and creating engaging user experiences.

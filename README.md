@@ -1,7 +1,7 @@
 # Hitesh Kumar - Interactive AI/ML Engineer Portfolio
 
 <p align="center">
-  <img src="https://YOUR_IMAGE_HOSTING_URL/portfolio-showcase.gif" alt="A GIF showcasing the interactive features of the portfolio, including the AI assistant and the drawing game." width="850">
+  <img src="https://github.com/Hiteshydv001/AI-ML-Portfolio/blob/main/portfolio.png" alt="A GIF showcasing the interactive features of the portfolio, including the AI assistant and the drawing game." width="850">
   <br/>
   <em>A dynamic and interactive portfolio built with Next.js, featuring a custom AI assistant, an animated data pipeline visualization, and an AI-powered sketch recognition game.</em>
 </p>

@@ -5,7 +5,7 @@ import { Experience } from "../types/experience";
 export const experiences: Experience[] = [
   {
     title: "ML Intern",
-    company: "100GAJ",
+  company: "100GAJ (now Algoric — Gajsphere Pvt Ltd)",
     location: "Remote",
     period: "Jun 2025 - Sep 2025",
     description: [
@@ -16,7 +16,9 @@ export const experiences: Experience[] = [
     technologies: ["RAG", "Playwright", "BeautifulSoup", "Vector Databases", "Semantic Search"],
     image: "/images/100GAJ.jpeg",
     companyUrl: "https://100gaj.vercel.app/",
-    certificateUrl: "https://drive.google.com/file/d/1tF8K2gljfjIIMduTOPwCzDwu25piVmRR/view?usp=sharing",
+  certificateUrl: "https://drive.google.com/file/d/1tF8K2gljfjIIMduTOPwCzDwu25piVmRR/view?usp=sharing",
+  additionalCertificateUrl: "https://drive.google.com/file/d/14leddMGIZ865mQ4-ejngbDMp31bgwNFN/view?usp=sharing",
+  lorUrl: "https://drive.google.com/file/d/1YjfCSw7-Heb2wxxJkbstSxhyDfrEk3kh/view?usp=sharing",
     githubUrl: "https://github.com/Hiteshydv001/100-GAJ-RAG",
     slug: "100gaj",
     content: (
@@ -50,8 +52,15 @@ export const experiences: Experience[] = [
           Successfully developed and deployed a RAG-based AI system that streamlined property discovery and automated customer support. The project demonstrated the effective application of retrieval-augmented AI in the real estate sector.
         </p>
         <p>
+          Note: 100GAJ has been rebranded — currently known as Algoric. The parent company is Gajsphere Pvt Ltd.
+        </p>
+        <p>
           View the project on <a href="https://github.com/Hiteshydv001/100-GAJ-RAG" target="_blank" rel="noopener noreferrer">GitHub →</a>
         </p>
+        <div className="mt-2 flex flex-col space-y-2">
+          <a href="https://drive.google.com/file/d/14leddMGIZ865mQ4-ejngbDMp31bgwNFN/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300">Completion Certificate →</a>
+          <a href="https://drive.google.com/file/d/1YjfCSw7-Heb2wxxJkbstSxhyDfrEk3kh/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300">Letter of Recommendation (LOR) →</a>
+        </div>
       </div>
     ),
   },

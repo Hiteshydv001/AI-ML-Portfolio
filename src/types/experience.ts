@@ -11,6 +11,7 @@ export interface Experience {
   companyUrl?: string;
   certificateUrl?: string;
   additionalCertificateUrl?: string;
+  lorUrl?: string;
   frenchWebsiteUrl?: string;
   githubUrl?: string;
   deploymentUrl?: string;

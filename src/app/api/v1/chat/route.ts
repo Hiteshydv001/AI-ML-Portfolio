@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const BACKEND_URL = 'https://portfolio-67uz.onrender.com/api/v1/chat';
+// Read backend URL from environment. Prefer server-only env var `BACKEND_URL`,
+// fall back to `NEXT_PUBLIC_BACKEND_URL` if needed (useful in some hosting setups).
+const BACKEND_URL = process.env.BACKEND_URL ?? process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export async function OPTIONS() {
     return NextResponse.json({}, {
@@ -16,6 +18,15 @@ export const runtime = 'edge';
 
 export async function POST(req: Request) {
     try {
+        // fail fast if backend URL isn't configured
+        if (!BACKEND_URL) {
+            console.error('BACKEND_URL is not configured');
+            return NextResponse.json(
+                { error: 'Backend URL not configured on server' },
+                { status: 500 }
+            );
+        }
+
         const { message, chat_history } = await req.json();
         console.log('Received request:', { message, chat_history });
 

@@ -3,20 +3,20 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const GitHubStatCard = ({ title, value, icon }: { title: string; value: string | number; icon: React.ReactNode }) => (
-  <div className="bg-gray-100/80 rounded-xl p-4 flex items-center gap-3">
-    <div className="text-black">
+  <div className="bg-gray-100/80 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+    <div className="text-black flex-shrink-0">
       {icon}
     </div>
     <div>
-      <p className="text-sm text-gray-500">{title}</p>
-      <p className="text-lg font-semibold text-black">{value}</p>
+      <p className="text-xs sm:text-sm text-gray-500">{title}</p>
+      <p className="text-base sm:text-lg font-semibold text-black">{value}</p>
     </div>
   </div>
 );
 
 const LanguageBar = ({ language, percentage }: { language: string; percentage: number }) => (
   <div className="w-full">
-    <div className="flex justify-between text-sm mb-1">
+    <div className="flex justify-between text-xs sm:text-sm mb-1">
       <span className="text-gray-600">{language}</span>
       <span className="text-black font-medium">{percentage}%</span>
     </div>
@@ -35,17 +35,17 @@ const GithubStats = () => {
   return (
     <div className="w-full my-16">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-8">
-        <div className="bg-gray-100/80 p-3 rounded-xl">
+      <div className="flex items-center gap-3 mb-6 md:mb-8">
+        <div className="bg-gray-100/80 p-2.5 sm:p-3 rounded-xl">
           <svg width="24" height="24" fill="black"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48 0-.24-.01-.87-.01-1.7-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.1-1.46-1.1-1.46-.9-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85.004 1.71.12 2.51.35 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85 0 1.33-.01 2.4-.01 2.73 0 .27.16.58.67.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z" /></svg>
         </div>
-        <h2 className="text-2xl font-bold text-black">
+        <h2 className="text-xl sm:text-2xl font-bold text-black">
           GitHub Activity
         </h2>
       </div>
 
       {/* Main Content */}
-      <div className="relative">
+      <div className="relative max-w-full sm:max-w-2xl lg:max-w-full">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl blur-3xl" />
         
@@ -53,10 +53,10 @@ const GithubStats = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="relative bg-gray-800/30 backdrop-blur-xl rounded-3xl border border-white/10 p-6 shadow-2xl"
+          className="relative bg-gray-800/30 backdrop-blur-xl rounded-3xl border border-white/10 p-4 sm:p-6 shadow-2xl"
         >
           {/* Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4 mb-6 md:mb-8">
             <GitHubStatCard
               title="Total Stars"
               value="20"
@@ -81,7 +81,7 @@ const GithubStats = () => {
 
           {/* Language Stats */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-black mb-4">Most Used Languages</h3>
+            <h3 className="text-base sm:text-lg font-semibold text-black mb-3 sm:mb-4">Most Used Languages</h3>
             <div className="space-y-3">
               <LanguageBar language="Jupyter Notebook" percentage={41.82} />
               <LanguageBar language="TypeScript" percentage={32.48} />

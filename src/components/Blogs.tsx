@@ -70,6 +70,15 @@ export const Blogs = ({ blogs }: { blogs: Blog[] }) => {
                 <Paragraph className="text-sm md:text-sm lg:text-sm mt-2">
                   {blog.description}
                 </Paragraph>
+                {blog.venue && (
+                  <div className="mt-2 text-sm text-zinc-600">
+                    <strong>{blog.venue.status}:</strong>{' '}
+                    {blog.venue.name} {blog.venue.year ? `· ${blog.venue.year}` : ''}
+                    {blog.venue.url ? (
+                      <a href={blog.venue.url} target="_blank" rel="noopener noreferrer" className="ml-2 text-sky-600">→</a>
+                    ) : null}
+                  </div>
+                )}
                 <div className="flex space-x-2 flex-wrap mt-4">
                   {blog.tags?.map((tag, index) => (
                     <span

@@ -11,6 +11,12 @@ export async function getAllBlogs() {
       date: "2024-11-17",
       title: "Train Waitlisted Ticket Confirmation Prediction Using Machine Learning",
       description: "A machine learning model to predict the confirmation probability of waitlisted train tickets, analyzing historical Indian Railways data to support better travel planning decisions.",
+      venue: {
+        status: 'Published',
+        name: 'IEEE Xplore (ICACCTech)',
+        year: '2024',
+        url: 'https://ieeexplore.ieee.org'
+      },
       image: "/images/Publication-2.png",
       tags: ["Machine Learning", "Prediction", "Python", "Research"]
     },
@@ -18,7 +24,13 @@ export async function getAllBlogs() {
       slug: "weather-traffic-routing",
       date: "2025-02-21",
       title: "Weather-Integrated Traffic Routing with Dynamic Speed Prediction",
-      description: "Accepted at ICRAAI 2025, this research focuses on integrating real-time weather data into traffic routing algorithms for smart city applications and designing AI models for speed prediction.",
+      description: "This research focuses on integrating real-time weather data into traffic routing algorithms for smart city applications and designing AI models for speed prediction.",
+      venue: {
+        status: 'Accepted',
+        name: 'ICRAAI',
+        year: '2025',
+        url: ''
+      },
       image: "/images/Publication-1.png",
       tags: ["AI", "Smart Cities", "Traffic Optimization", "Research"]
     }
